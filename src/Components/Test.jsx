@@ -3,6 +3,7 @@ import React, {useEffect, useState} from "react";
 import { testData } from "../data/data";
 
 import axios from 'axios'
+import TextTicker from 'react-native-text-ticker'
 
 
 //title
@@ -41,6 +42,7 @@ function Test() {
   return(
     <div>
     <h2>Articles</h2>
+
     <div>
       {articles.map((article) => (
         <div key={article.title}>
