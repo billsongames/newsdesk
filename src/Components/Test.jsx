@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react";
 import { testData } from "../data/data";
 
 import axios from 'axios'
-import TextTicker from 'react-native-text-ticker'
+
 
 
 //title
@@ -20,7 +20,7 @@ function Test() {
   const [articles,setArticles] = useState([])
 
   const searchString = "Manchester United"
-  
+
   useEffect(() => {
     axios
       .get(`https://gnews.io/api/v4/top-headlines?q=${searchString}&country=gb&category=sport&sortby=publishedAt&apikey=445b4b502608f3804329f4428b41b723`)
@@ -32,7 +32,9 @@ function Test() {
       .catch(function (error) {
         console.log(error);
       })
-    }, [])    
+    
+  }, [])
+  
 
 
 
