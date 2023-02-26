@@ -12,7 +12,7 @@ const NavBar = ({ onSubmit }) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         onSubmit(search)
-    }
+    };
 
     return (
     <div className="navbar-container">
