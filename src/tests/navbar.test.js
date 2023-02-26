@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import NavBar from "../Components/Test/Navbar"
 
 describe("NavBar", () => {
@@ -12,5 +12,18 @@ describe("NavBar", () => {
     expect(screen.getByText("Politics")).toBeInTheDocument();
     expect(screen.getByText("Sport")).toBeInTheDocument();
     expect(screen.getByText("Entertainment")).toBeInTheDocument();
+    });
+
+    it("handles search form submission", () => {
+        const handleSubmit = jest.fn();
+        render(<NavBar onSubmit={handleSubmit} />);
+
+        const searchInput = screen.getByPlaceholderText("Search");
+        const searchButton = screen.getByTestId("button");
+
+        fireEvent.change(searchInput, { target: { value: "sports" } });
+        fireEvent.click(searchButton);
+
+        expect(handleSubmit).toHaveBeenCalledWith("sports");
     });
 });

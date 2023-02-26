@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import "../../styles/navbar.css"
 
-const NavBar = () => {
+const NavBar = ({ onSubmit }) => {
     const [search, setSearch] = useState("");
 
     const handleSearchInput = (event) => {
@@ -11,7 +11,7 @@ const NavBar = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        // setSearchResults
+        onSubmit(search)
     }
 
     return (
