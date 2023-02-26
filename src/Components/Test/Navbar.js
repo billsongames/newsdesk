@@ -1,8 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 
 import "../../styles/navbar.css"
 
 const NavBar = () => {
+    const [search, setSearch] = useState("");
+
+    const handleSearchInput = (event) => {
+        setSearch(event.target.value);
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        // setSearchResults
+    }
+
+    return (
     <div className="navbar-container">
         <img className="navbar-logo" src="/" alt="logo" />
         <ul className="navbar-categories">
@@ -13,11 +25,13 @@ const NavBar = () => {
             <li className="navbar-categories-item">Entertainment</li>
         </ul>
 
-        <form className='search-form'>
+        <form className='search-form' onSubmit={handleSubmit}>
             <input 
                 className='search-form__input-box' 
                 type='text' 
                 placeholder='Search' 
+                value={search}
+                onChange={handleSearchInput}
         />
     
         <button className='search-form__button' type='submit' data-testid='button'>
@@ -27,6 +41,7 @@ const NavBar = () => {
         
 
     </div>
-}
+    );
+};
 
 export default NavBar;
