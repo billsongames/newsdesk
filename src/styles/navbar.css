@@ -1,0 +1,42 @@
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: white;
+    height: 50px;
+    width: 100%;
+}
+
+.navbar-logo {
+    margin-right: 15px;
+    height: 50px;
+}
+
+.navbar-categories {
+    display: flex;
+    flex-direction: row;
+    margin-right: 15px;
+}
+
+.navbar-categories-item {
+    margin-left: 10px;
+    display: inline-block;
+}
+
+.navbar-categories-item a {
+    text-decoration: none;
+    color: black;
+}
+    
+.navbar-categories-item a:visited {
+    text-decoration: none;
+    color: black;
+}
+    
+.navbar-categories-item a:hover {
+    text-decoration: underline;
+}
+    
+.navbar-categories-item a:active {
+    text-decoration: underline;
+}
