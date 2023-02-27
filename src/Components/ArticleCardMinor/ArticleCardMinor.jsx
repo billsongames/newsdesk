@@ -41,35 +41,35 @@ function ArticleCardMinor(props) {
   return(
     <div className="article-card-minor">
       
-      <div className="article-title">
+      <div className="article-card-minor__title">
         {title}
       </div>
 
-      <div className="article-container">
-        <div className="article-image">
+      <div className="article-card-minor__display">
+        <div className="article-card-minor__image">
           <img className="image"src={image} alt={description}></img>        
         </div>
-        <div className="article-text">
-          <div className="article-description">
+        <div className="article-card-minor__text">
+          <div className="article-card-minor__description">
             {description}
           </div>
-          <div className="article-content">
+          <div className="article-card-minor__content">
             {content}
           </div>  
-
+          
         </div>
 
       </div>
 
-      <div className="article-url">
+      <div className="article-card-minor__url">
         <a href={url} target="blank">Full article</a>     
       </div>
 
-      <div className="article-source">
+      <div className="article-card-minor__source">
         Source: {source}
       </div>
       
-      <div className="article-time">
+      <div className="article-card-minor__time">
         {timeSincePublication}
       </div>
 

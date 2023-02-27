@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import "../../styles/navbar.css"
+import "./navbar.css"
 
 const NavBar = ({ onSubmit }) => {
     const [search, setSearch] = useState("");
@@ -14,9 +14,13 @@ const NavBar = ({ onSubmit }) => {
         onSubmit(search)
     };
 
+
+
+
+
     return (
     <div className="navbar-container">
-        <img className="navbar-logo" src="/" alt="logo" />
+        <img className="navbar-logo" src="/logo2.png" alt="logo" />
         <ul className="navbar-categories">
             <li className="navbar-categories-item">Tech</li>
             <li className="navbar-categories-item">Business</li>

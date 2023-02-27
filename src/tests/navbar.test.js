@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
-import NavBar from "../Components/Test/Navbar"
+import NavBar from "../Components/NavBar/NavBar"
 
 describe("NavBar", () => {
     it("renders logo and categories", () => {

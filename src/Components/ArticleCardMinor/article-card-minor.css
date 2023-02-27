@@ -6,38 +6,39 @@
   border-radius: 8px;
 }
 
-.article-title {
+.article-card-minor__title {
   margin: 0px 0px 10px 0px;
-  font-size: 24px;
+  font-size: 28px;
   font-weight: bold;
 }
 
 /* ############################################## */
-
-.article-container {
+.article-card-minor__display {
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-start;  
 }
 
-.article-image > img {
+.article-card-minor__image > img {
   width: 200px;
   height: 150px;
   object-fit: cover;
 }
 
-.article-text {
+.article-card-minor__text {
   display: flex;
   flex-flow: column;
 }
 
-.article-description {
+.article-card-minor__description {
   font-weight: bold;
   margin: 0px 10px 10px 10px;
+  font-size: 20px;
 }
 
-.article-content {
+.article-card-minor__content {
   margin: 10px;
+  font-size: 20px;
 }
 
 /* ############################################## */
