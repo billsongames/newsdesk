@@ -7,11 +7,15 @@ describe("NavBar", () => {
     render(<NavBar />);
 
     expect(screen.getByAltText("logo")).toBeInTheDocument();
-    expect(screen.getByText("Tech")).toBeInTheDocument();
+    expect(screen.getByText("General")).toBeInTheDocument();
+    expect(screen.getByText("World")).toBeInTheDocument();
+    expect(screen.getByText("National")).toBeInTheDocument();
     expect(screen.getByText("Business")).toBeInTheDocument();
-    expect(screen.getByText("Politics")).toBeInTheDocument();
-    expect(screen.getByText("Sport")).toBeInTheDocument();
+    expect(screen.getByText("Technology")).toBeInTheDocument();
     expect(screen.getByText("Entertainment")).toBeInTheDocument();
+    expect(screen.getByText("Sports")).toBeInTheDocument();
+    expect(screen.getByText("Science")).toBeInTheDocument();
+    expect(screen.getByText("Health")).toBeInTheDocument();
     });
 
     it("handles search form submission", () => {
@@ -25,5 +29,11 @@ describe("NavBar", () => {
         fireEvent.click(searchButton);
 
         expect(handleSubmit).toHaveBeenCalledWith("sports");
+    });
+
+    it("matches the snapshot", () => {
+        const { asFragment } = render(<NavBar />);
+
+        expect(asFragment()).toMatchSnapshot();
     });
 });
