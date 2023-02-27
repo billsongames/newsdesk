@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 
-import Sidebar from "../Components/Test/Sidebar"
+import Sidebar from "../Components/Sidebar/Sidebar"
 
 describe("Sidebar", () => {
     it("renders filters text and options", () => {
