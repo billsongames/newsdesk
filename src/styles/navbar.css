@@ -40,3 +40,42 @@
 .navbar-categories-item a:active {
     text-decoration: underline;
 }
+
+.search-form {
+    display: flex;
+    align-items: center;
+    margin: 15px;
+    padding-right: 50px;
+}
+
+.search-form__input {
+    min-height: 20px;
+    max-width: 150px;
+    padding: 0 1rem;
+    color: #0a0a0a;
+    font-size: 15px;
+    border: 2px solid black;
+    border-radius: 6px 0 0 6px;
+    background-color: transparent;
+}
+
+.search-form__input:focus, .search-form__input:focus-visible {
+    border-color: #a6aaad;
+    outline: none;
+}
+
+.search-form__button {
+    min-height: 20px;
+    padding: .5em 1em;
+    border: none;
+    border-radius: 0 6px 6px 0;
+    background-color: black;
+    color: #fff;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color .3s ease-in-out;
+}
+
+.search-form__button:hover {
+    background-color: #a6aaad;
+}
