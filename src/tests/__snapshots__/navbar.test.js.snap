@@ -10,55 +10,55 @@ exports[`NavBar matches the snapshot 1`] = `
       class="navbar-logo"
       src="/logo2.png"
     />
-    <ul
+    <div
       class="navbar-categories"
     >
-      <li
-        class="navbar-categories-item"
+      <button
+        class="navbar-button"
       >
         General
-      </li>
-      <li
-        class="navbar-categories-item"
+      </button>
+      <button
+        class="navbar-button"
       >
         World
-      </li>
-      <li
-        class="navbar-categories-item"
+      </button>
+      <button
+        class="navbar-button"
       >
         National
-      </li>
-      <li
-        class="navbar-categories-item"
+      </button>
+      <button
+        class="navbar-button"
       >
         Business
-      </li>
-      <li
-        class="navbar-categories-item"
+      </button>
+      <button
+        class="navbar-button"
       >
         Technology
-      </li>
-      <li
-        class="navbar-categories-item"
+      </button>
+      <button
+        class="navbar-button"
       >
         Entertainment
-      </li>
-      <li
-        class="navbar-categories-item"
+      </button>
+      <button
+        class="navbar-button"
       >
         Sports
-      </li>
-      <li
-        class="navbar-categories-item"
+      </button>
+      <button
+        class="navbar-button"
       >
         Science
-      </li>
-      <li
-        class="navbar-categories-item"
+      </button>
+      <button
+        class="navbar-button"
       >
         Health
-      </li>
-    </ul>
+      </button>
+    </div>
     <form
       class="search-form"
     >
