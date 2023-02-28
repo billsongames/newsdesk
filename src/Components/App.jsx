@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import './App.css';
@@ -9,13 +9,19 @@ import ArticleContainer from './ArticleContainer/ArticleContainer';
 
 function App() {
 
+  const [articleCategory, setArticleCategory] = useState("general")
+  const handleArticleCategoryChange = (newCategory) => {
+    setArticleCategory(newCategory)
+  }
+
+
   return (
     <BrowserRouter>
       <div className="App">
         <DateDisplay />
-        <Navbar />
+        <Navbar onNavBarCategoryChange={handleArticleCategoryChange}/>
         <Routes>
-          <Route path = "/" element={<ArticleContainer/>} />
+          <Route path = "/" element={<ArticleContainer articleCategory={articleCategory} />} />
         </Routes>
       </div>
     </BrowserRouter>
