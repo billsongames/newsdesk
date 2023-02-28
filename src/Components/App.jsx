@@ -10,14 +10,18 @@ import ArticleContainer from './ArticleContainer/ArticleContainer';
 function App() {
 
   const [articleCategory, setArticleCategory] = useState("general")
+  const handleArticleCategoryChange = (newCategory) => {
+    setArticleCategory(newCategory)
+  }
+
 
   return (
     <BrowserRouter>
       <div className="App">
         <DateDisplay />
-        <Navbar />
+        <Navbar onNavBarCategoryChange={handleArticleCategoryChange}/>
         <Routes>
-          <Route path = "/" element={<ArticleContainer/>} />
+          <Route path = "/" element={<ArticleContainer articleCategory={articleCategory} />} />
         </Routes>
       </div>
     </BrowserRouter>
