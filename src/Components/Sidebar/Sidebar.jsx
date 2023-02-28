@@ -4,28 +4,33 @@ import qs from "qs";
 
 import "./sidebar.css"
 
-const Sidebar = () => {
-    const { search } = useLocation();
+const Sidebar = (props) => {
+    const { reverseOrder } = props;
 
-    const buildQueryString = (operation, valueObj) => {
-        const currentQueryParams = qs.parse(search, { ignoreQueryPrefix: true });
-        const newQueryParams = {
-            ...currentQueryParams,
-            [operation]: JSON.stringify(valueObj),
-        };
-        return qs.stringify(newQueryParams, {
-            addQueryPrefix: true,
-            encode: false,
-        });
-    };
+    // const { search } = useLocation();
+
+    // const buildQueryString = (operation, valueObj) => {
+    //     const currentQueryParams = qs.parse(search, { ignoreQueryPrefix: true });
+    //     const newQueryParams = {
+    //         ...currentQueryParams,
+    //         [operation]: JSON.stringify(valueObj),
+    //     };
+    //     return qs.stringify(newQueryParams, {
+    //         addQueryPrefix: true,
+    //         encode: false,
+    //     });
+    // };
 
 return (
     <div className="sidebar-container">
     <h2 className="sidebar-filters-text">Sort by Date</h2>
-    <ul className="sidebar-filters">
+    <div className="sidebar">
+    <button onClick={reverseOrder}>Reverse Order</button>
+</div>
+    {/* <ul className="sidebar-filters">
         <li className="sidebar-filters-item"><Link to={buildQueryString("sort", { publishedAt: -1 })}>Most Recent</Link></li>
         <li className="sidebar-filters-item"><Link to={buildQueryString("sort", { publishedAt: 1 })}>Oldest</Link></li>
-    </ul>
+    </ul> */}
 
     <h2 className="sidebar-share-text">Share</h2>
     <ul className="sidebar-share">

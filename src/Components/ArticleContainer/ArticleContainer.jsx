@@ -12,6 +12,12 @@ function ArticleContainer({articleCategory}) {
   const testMode=true
 
   const [articles,setArticles] = useState([])
+  const [reverse, setReverse] = useState(false);
+  const reverseOrder = () => {
+    setReverse(!reverse);
+  };
+
+  const sortedArticles = reverse ? articles.slice().reverse() : articles;
 
   const searchString = "Arsenal"
 
@@ -64,12 +70,12 @@ function ArticleContainer({articleCategory}) {
   return(
     <div className="article-container">
       <div>
-        <Sidebar />
+        <Sidebar reverseOrder={reverseOrder} />
       </div>
     
       <div>
         CATEGORY = {articleCategory}  
-        {articles.map((article) => (
+        {sortedArticles.map((article) => (
           <div key={article.title}>
             <ArticleCardMinor
               title = {article.title}
