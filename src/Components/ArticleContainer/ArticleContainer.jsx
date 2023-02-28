@@ -8,7 +8,7 @@ import "./article-container.css"
 
 import { testData } from "../../data/data";
 
-function ArticleContainer({articleCategory}) {
+function ArticleContainer({articleCategory, searchQuery}) {
   const testMode=true
 
   const [articles,setArticles] = useState([])
@@ -18,10 +18,6 @@ function ArticleContainer({articleCategory}) {
   };
 
   const sortedArticles = reverse ? articles.slice().reverse() : articles;
-
-  const searchString = "Arsenal"
-
-  
 
 /*   useEffect(() => {
     if (!testMode) {
@@ -45,7 +41,44 @@ function ArticleContainer({articleCategory}) {
  // TOP HEADLINES ENDPOINT
 
   useEffect(() => {
-    if (!testMode) {
+    if (!searchQuery) {
+      console.log(`No search query, ${articleCategory} category displayed`)
+      axios
+      .get(`https://gnews.io/api/v4/top-headlines?category=${articleCategory}&lang=en&country=gb&sortby=publishedAt&apikey=445b4b502608f3804329f4428b41b723`)
+
+      .then(function (response) {
+        setArticles(response.data.articles)
+
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+    }
+
+// SEARCH QUERY ENDPOINT
+    
+    else if (!articleCategory) {
+      console.log(`Search query = ${searchQuery}, no category displayed`)
+
+      axios
+      .get(`https://gnews.io/api/v4/search?q=${searchQuery}&lang=en&country=us&max=10&apikey=445b4b502608f3804329f4428b41b723`)
+
+      .then(function (response) {
+        setArticles(response.data.articles)
+
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+    }
+  
+  } ,[articleCategory, searchQuery])
+
+
+
+
+
+/*     if (!testMode) {
     axios
       .get(`https://gnews.io/api/v4/top-headlines?category=${articleCategory}&lang=en&country=gb&sortby=publishedAt&apikey=445b4b502608f3804329f4428b41b723`)
 
@@ -59,7 +92,7 @@ function ArticleContainer({articleCategory}) {
     } else {
       setArticles(testData.articles)
     }
-  }, [testMode, articleCategory])
+  }, [testMode, articleCategory, searchQuery]) */
   
 
 
@@ -74,7 +107,7 @@ function ArticleContainer({articleCategory}) {
       </div>
     
       <div>
-        CATEGORY = {articleCategory}  
+        CATEGORY = {articleCategory} : SEARCH= {searchQuery}
         {sortedArticles.map((article) => (
           <div key={article.title}>
             <ArticleCardMinor

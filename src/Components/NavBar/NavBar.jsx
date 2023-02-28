@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import "./navbar.css"
 
-const NavBar = ({ onNavBarCategoryChange,onSubmit }) => {
+const NavBar = ({ onNavBarCategoryChange, onSearchSubmit }) => {
     const [search, setSearch] = useState("");
 
     const handleSearchInput = (event) => {
@@ -11,7 +11,7 @@ const NavBar = ({ onNavBarCategoryChange,onSubmit }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        onSubmit(search)
+        onSearchSubmit(search)
     };
 
     return (
@@ -27,18 +27,7 @@ const NavBar = ({ onNavBarCategoryChange,onSubmit }) => {
           <button className="navbar-button" onClick={() => onNavBarCategoryChange("sports")}>Sports</button>
           <button className="navbar-button" onClick={() => onNavBarCategoryChange("science")}>Science</button>
           <button className="navbar-button" onClick={() => onNavBarCategoryChange("health")}>Health</button>
-{/*             <li className="navbar-categories-item">General</li>
-            <li className="navbar-categories-item">World</li>
-            <li className="navbar-categories-item">National</li>
-            <li className="navbar-categories-item">Business</li>
-            <li className="navbar-categories-item">Technology</li>
-            <li className="navbar-categories-item">Entertainment</li>
-            <li className="navbar-categories-item">Sports</li>
-            <li className="navbar-categories-item">Science</li> */}
-
-
-
-          </div>  
+        </div>  
 
             
 

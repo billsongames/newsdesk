@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ArticleCardMinor renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="article-card-minor"
+  >
+    <div
+      class="article-card-minor__title"
+    />
+    <div
+      class="article-card-minor__display"
+    >
+      <div
+        class="article-card-minor__image"
+      >
+        <img
+          class="image"
+        />
+      </div>
+      <div
+        class="article-card-minor__text"
+      >
+        <div
+          class="article-card-minor__description"
+        />
+        <div
+          class="article-card-minor__content"
+        />
+      </div>
+    </div>
+    <div
+      class="article-card-minor__url"
+    >
+      <a
+        target="blank"
+      >
+        Full article
+      </a>
+    </div>
+    <div
+      class="article-card-minor__source"
+    >
+      Source: 
+    </div>
+    <div
+      class="article-card-minor__time"
+    />
+  </div>
+</DocumentFragment>
+`;

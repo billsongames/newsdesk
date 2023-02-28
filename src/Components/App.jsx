@@ -10,8 +10,16 @@ import ArticleContainer from './ArticleContainer/ArticleContainer';
 function App() {
 
   const [articleCategory, setArticleCategory] = useState("general")
+  const [search, setSearch] = useState("")
+
   const handleArticleCategoryChange = (newCategory) => {
+    setSearch("")
     setArticleCategory(newCategory)
+  }
+
+  const handleSearchRequest = (searchQuery) => {
+    setArticleCategory("")
+    setSearch(searchQuery)
   }
 
 
@@ -19,9 +27,9 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <DateDisplay />
-        <Navbar onNavBarCategoryChange={handleArticleCategoryChange}/>
+        <Navbar onNavBarCategoryChange={handleArticleCategoryChange} onSearchSubmit={handleSearchRequest} />
         <Routes>
-          <Route path = "/" element={<ArticleContainer articleCategory={articleCategory} />} />
+          <Route path = "/" element={<ArticleContainer articleCategory={articleCategory} searchQuery={search}/>} />
         </Routes>
       </div>
     </BrowserRouter>
