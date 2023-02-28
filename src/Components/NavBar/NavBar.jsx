@@ -14,24 +14,26 @@ const NavBar = ({ onSubmit }) => {
         onSubmit(search)
     };
 
-
-
-
-
     return (
     <div className="navbar-container">
         <img className="navbar-logo" src="/logo2.png" alt="logo" />
         <ul className="navbar-categories">
-            <li className="navbar-categories-item">Tech</li>
+            <li className="navbar-categories-item">General</li>
+            <li className="navbar-categories-item">World</li>
+            <li className="navbar-categories-item">National</li>
             <li className="navbar-categories-item">Business</li>
-            <li className="navbar-categories-item">Politics</li>
-            <li className="navbar-categories-item">Sport</li>
+            <li className="navbar-categories-item">Technology</li>
             <li className="navbar-categories-item">Entertainment</li>
-        </ul>
+            <li className="navbar-categories-item">Sports</li>
+            <li className="navbar-categories-item">Science</li>
+            <li className="navbar-categories-item">Health</li>
+          </ul>  
+
+            
 
         <form className='search-form' onSubmit={handleSubmit}>
             <input 
-                className='search-form__input-box' 
+                className='search-form__input' 
                 type='text' 
                 placeholder='Search' 
                 value={search}

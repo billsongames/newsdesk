@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import './App.css';
@@ -8,6 +8,8 @@ import Navbar from "./NavBar/NavBar"
 import ArticleContainer from './ArticleContainer/ArticleContainer';
 
 function App() {
+
+  const [articleCategory, setArticleCategory] = useState("general")
 
   return (
     <BrowserRouter>
