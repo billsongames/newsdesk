@@ -1,36 +1,31 @@
-import React from "react";
-import { Link, useLocation } from "react-router-dom";
-import qs from "qs";
+import React, { useState } from "react";
 
 import "./sidebar.css"
 
 const Sidebar = (props) => {
     const { reverseOrder } = props;
+    const [newArticles, setNewArticles] = useState(true);
+    const [oldArticles, setOldArticles] = useState(false);
 
-    // const { search } = useLocation();
+    const newClickHandler = () => {
+        setNewArticles(true);
+        setOldArticles(false);
+        reverseOrder();
+};
 
-    // const buildQueryString = (operation, valueObj) => {
-    //     const currentQueryParams = qs.parse(search, { ignoreQueryPrefix: true });
-    //     const newQueryParams = {
-    //         ...currentQueryParams,
-    //         [operation]: JSON.stringify(valueObj),
-    //     };
-    //     return qs.stringify(newQueryParams, {
-    //         addQueryPrefix: true,
-    //         encode: false,
-    //     });
-    // };
+    const oldClickHandler = () => {
+        setNewArticles(false);
+        setOldArticles(true);
+        reverseOrder();
+    };
 
 return (
     <div className="sidebar-container">
     <h2 className="sidebar-filters-text">Sort by Date</h2>
     <div className="sidebar">
-    <button onClick={reverseOrder}>Reverse Order</button>
+    <button className="sidebar-button" onClick={newClickHandler} disabled={newArticles}>Most Recent</button>
+    <button className="sidebar-button" onClick={oldClickHandler} disabled={oldArticles}>Oldest</button>
 </div>
-    {/* <ul className="sidebar-filters">
-        <li className="sidebar-filters-item"><Link to={buildQueryString("sort", { publishedAt: -1 })}>Most Recent</Link></li>
-        <li className="sidebar-filters-item"><Link to={buildQueryString("sort", { publishedAt: 1 })}>Oldest</Link></li>
-    </ul> */}
 
     <h2 className="sidebar-share-text">Share</h2>
     <ul className="sidebar-share">

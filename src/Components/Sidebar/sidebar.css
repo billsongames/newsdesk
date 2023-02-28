@@ -38,3 +38,19 @@
 .sidebar-share-item a:hover {
     text-decoration: underline;
 }
+
+.sidebar-button {
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    margin-bottom: 2px;
+    font-family: 'Barlow', sans-serif;
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.sidebar-button:hover {
+    text-decoration: underline;
+}
