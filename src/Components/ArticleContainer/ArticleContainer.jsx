@@ -22,28 +22,19 @@ function ArticleContainer({articleCategory, searchQuery}) {
 
   const [alert,setAlert] = useState({message: ""})
 
-/*   useEffect(() => {
-    if (!testMode) {
-    axios
-      .get(`https://gnews.io/api/v4/top-headlines?q=${searchString}&in=title&country=gb&category=sport&sortby=publishedAt&apikey=445b4b502608f3804329f4428b41b723`)
-
-      .then(function (response) {
-        setArticles(response.data.articles)
-
+  useEffect(() => {
+    if (testMode) {
+      setAlert({
+        message: "OK"
       })
-      .catch(function (error) {
-        console.log(error);
-      })
-    } else {
       setArticles(testData.articles)
     }
-  }, [testMode]) */
-
+  }, [testMode])
 
 
  // TOP HEADLINES ENDPOINT
 
-  useEffect(() => {
+/*   useEffect(() => {
     if (!searchQuery) {
       console.log(`No search query, ${articleCategory} category displayed`)
       axios
@@ -88,28 +79,10 @@ function ArticleContainer({articleCategory, searchQuery}) {
       })
     }
   
-  } ,[articleCategory, searchQuery])
+  } ,[articleCategory, searchQuery]) */
 
 
 
-
-
-/*     if (!testMode) {
-    axios
-      .get(`https://gnews.io/api/v4/top-headlines?category=${articleCategory}&lang=en&country=gb&sortby=publishedAt&apikey=445b4b502608f3804329f4428b41b723`)
-
-      .then(function (response) {
-        setArticles(response.data.articles)
-
-      })
-      .catch(function (error) {
-        console.log(error);
-      })
-    } else {
-      setArticles(testData.articles)
-    }
-  }, [testMode, articleCategory, searchQuery]) */
-  
 
 
 
