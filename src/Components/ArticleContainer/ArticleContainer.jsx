@@ -3,6 +3,7 @@ import axios from 'axios'
 
 import Sidebar from "../Sidebar/Sidebar"
 import ArticleCardMinor from "../ArticleCardMinor/ArticleCardMinor";
+import Alert from "../Alert/Alert"
 
 import "./article-container.css"
 
@@ -18,6 +19,8 @@ function ArticleContainer({articleCategory, searchQuery}) {
   };
 
   const sortedArticles = reverse ? articles.slice().reverse() : articles;
+
+  const [alert,setAlert] = useState({message: ""})
 
 /*   useEffect(() => {
     if (!testMode) {
@@ -48,9 +51,15 @@ function ArticleContainer({articleCategory, searchQuery}) {
 
       .then(function (response) {
         setArticles(response.data.articles)
+        setAlert({
+          message: ""
+        })
 
       })
       .catch(function (error) {
+        setAlert({
+          message: "ERROR RETRIEVING ARTICLES. PLEASE TRY LATER..."
+        })
         console.log(error);
       })
     }
@@ -64,10 +73,17 @@ function ArticleContainer({articleCategory, searchQuery}) {
       .get(`https://gnews.io/api/v4/search?q=${searchQuery}&lang=en&country=us&max=10&apikey=445b4b502608f3804329f4428b41b723`)
 
       .then(function (response) {
+        setAlert({
+          message: ""
+        })
         setArticles(response.data.articles)
+        
 
       })
       .catch(function (error) {
+        setAlert({
+          message: "ERROR RETRIEVING ARTICLES. PLEASE TRY LATER..."
+        })  
         console.log(error);
       })
     }
@@ -107,7 +123,7 @@ function ArticleContainer({articleCategory, searchQuery}) {
       </div>
     
       <div>
-        CATEGORY = {articleCategory} : SEARCH= {searchQuery}
+        <Alert message={alert.message} />
         {sortedArticles.map((article) => (
           <div key={article.title}>
             <ArticleCardMinor
