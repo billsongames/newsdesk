@@ -15,31 +15,11 @@ function ArticleContainer({articleCategory, searchQuery}) {
 
   const [articles,setArticles] = useState([])
   const [reverse, setReverse] = useState(false);
-  const [selected, setSelected] = useState("")
   const reverseOrder = () => {
     setReverse(!reverse);
   };
-  const handleSelectChange = (selected) => {
-    setSelected(selected);
-    console.log(selected, "<selected");
-  };
 
-  // const sortedArticles = reverse ? articles.slice().reverse() : articles;
-
-  let sortedArticles = articles;
-  if (reverse) {
-    sortedArticles = articles.slice().reverse();
-  }
-
-  let filteredArticles = sortedArticles;
-  if (selected) {
-    filteredArticles = sortedArticles.filter((article) => {
-      return article.source.name === selected;
-    });
-  }
-
-  console.log("sorted", sortedArticles);
-  console.log("filtered", filteredArticles);
+  const sortedArticles = reverse ? articles.slice().reverse() : articles;
 
   const [alert,setAlert] = useState({message: ""})
 
@@ -110,17 +90,12 @@ function ArticleContainer({articleCategory, searchQuery}) {
   return(
     <div className="article-container">
       <div>
-        <Sidebar 
-        reverseOrder={reverseOrder} 
-        articles={articles}
-        selected={selected}
-        setSelected={handleSelectChange}
-        />
+        <Sidebar reverseOrder={reverseOrder} />
       </div>
     
       <div>
         <Alert message={alert.message} />
-        {filteredArticles.map((article) => (
+        {sortedArticles.map((article) => (
           <div key={article.title}>
             <ArticleCardMinor
               title = {article.title}
