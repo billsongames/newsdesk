@@ -12,6 +12,8 @@ import Account from "./Account/Account"
 function App() {
   
   const [userID, setUserID] = useState()
+  const [articleCategory, setArticleCategory] = useState("general")
+  const [search, setSearch] = useState("")
 
   const handleLogin = (response) => {
     setUserID(response.id)
@@ -21,45 +23,6 @@ function App() {
     window.FB.logout()
     setUserID()
   }
-
-  const checkIfUserExists = async() => {
-    if (userID) {
-      const { count, error } = await supabase
-        .from('users')
-        .select('user_id', {count: 'exact', head: true})
-        .eq('user_id', userID)
-
-        if (error) {
-          console.log("error", error)
-        } else {
-          if (count === 0) {
-            writeUserID(userID)
-          }
-        }
-    }
-  }
-
-  const writeUserID = async() => {
-    const { data, error } = await supabase
-      .from('users')
-      .insert([
-        {
-          user_id: userID,
-        }])
-
-      if (error) {
-        console.log("error", error)
-      } else {
-        console.log("insert success")   
-    }
-  }
-  
-  
-
-
-
-  const [articleCategory, setArticleCategory] = useState("general")
-  const [search, setSearch] = useState("")
 
   const handleArticleCategoryChange = (newCategory) => {
     setSearch("")
@@ -72,8 +35,36 @@ function App() {
   }
 
   useEffect(() => {
+    async function checkIfUserExists() {
+      if (userID) {
+        const { count, error } = await supabase
+          .from('users')
+          .select('user_id', {count: 'exact', head: true})
+          .eq('user_id', userID)
+  
+          if (error) {
+            console.log("error", error)
+          } else {
+          if (count === 0) {
+            const { data, error } = await supabase
+              .from('users')
+              .insert([
+                {
+                  user_id: userID,
+                }])
+
+      if (error) {
+        console.log("error", error)
+      } else {
+        console.log("insert success")   
+    }
+            }
+          }
+      }
+    }
     checkIfUserExists()
-  }, [checkIfUserExists(), userID]);
+    
+  }, [userID]);
 
 
   return (
