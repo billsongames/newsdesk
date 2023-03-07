@@ -49,16 +49,16 @@ function ArticleContainer({userID, articleCategory, searchQuery}) {
 
   }, [userID]) */
 
-/*   useEffect(() => {
+  useEffect(() => {
     if (testMode) {
       setArticles(testData.articles)
     }
-  }, [testMode]) */
+  }, [testMode])
 
 
  // TOP HEADLINES ENDPOINT
 
-  useEffect(() => {
+/*   useEffect(() => {
     if (!searchQuery) {
       console.log(`No search query, ${articleCategory} category displayed`)
       axios
@@ -103,7 +103,7 @@ function ArticleContainer({userID, articleCategory, searchQuery}) {
       })
     }
   
-  } ,[articleCategory, searchQuery])
+  } ,[articleCategory, searchQuery]) */
 
 
 

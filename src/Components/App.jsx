@@ -51,6 +51,7 @@ function App() {
               .insert([
                 {
                   user_id: userID,
+                  saved_articles: []
                 }])
 
               if (error) {

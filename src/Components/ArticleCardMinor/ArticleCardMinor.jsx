@@ -12,24 +12,27 @@ function ArticleCardMinor( {title, description, content, image, url, source, pub
   const [savedArticles, setSavedArticles] = useState([])
   
   useEffect(() => {
-    async function getUserSavedArticles() {
-      if (userID) {
-        const {data, error} = await supabase
-          .from('users')
-          .select('saved_articles')
-          .eq('user_id', `${userID}`)
-    
-          if (error) {
-            console.log("error", error)
-            setAlert({message: "Error retrieving saved articles"})
-          } else {
-            setSavedArticles(data[0].saved_articles)
-            setAlert({message: ""})
+    setTimeout(() => {
+      async function getUserSavedArticles() {
+        if (userID) {
+          const {data, error} = await supabase
+            .from('users')
+            .select('saved_articles')
+            .eq('user_id', `${userID}`)
+      
+            if (error) {
+              console.log("error", error)
+              setAlert({message: "Error retrieving saved articles"})
+            } else {
+              setSavedArticles(data[0].saved_articles)
+              setAlert({message: ""})
+            }
           }
-        }
-    }
-    getUserSavedArticles()
+      }
+      getUserSavedArticles()
 
+    }, 1000)
+    
   }, [userID])
 
 
