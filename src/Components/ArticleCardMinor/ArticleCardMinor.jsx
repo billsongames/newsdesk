@@ -32,13 +32,13 @@ function ArticleCardMinor( {title, description, content, image, url, source, pub
       getUserSavedArticles()
 
     }, 1000)
-    
+
   }, [userID])
 
 
   const updateSavedArticles = async() => {
 
-    const newArticle=[...savedArticles, {"title": `${title}`, "image_url": `${image}`, "article_url": `${url}`, "publishedAt": `${publishedAt}`}]
+    const newArticle=[...savedArticles, articleJSON]
 
     const {data, error} = await supabase
 
