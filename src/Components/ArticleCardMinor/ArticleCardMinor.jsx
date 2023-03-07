@@ -1,10 +1,56 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types"
+import { supabase } from '../../api/api';
+import { tester } from "../../api/api";
 
 import "./article-card-minor.css"
 
-function ArticleCardMinor(props) {
-  const {title, description, content, url, image, source, publishedAt} = props
+function ArticleCardMinor( {title, description, content, image, url, source, publishedAt, userID} ) {
+
+  const articleJSON = {"title": `${title}`, "image_url": `${image}`, "article_url": `${url}`, "publishedAt": `${publishedAt}`}
+  const [alert,setAlert] = useState({message: ""})
+  const [savedArticles, setSavedArticles] = useState([])
+  
+  useEffect(() => {
+    async function getUserSavedArticles() {
+      if (userID) {
+        const {data, error} = await supabase
+          .from('users')
+          .select('saved_articles')
+          .eq('user_id', `${userID}`)
+    
+          if (error) {
+            console.log("error", error)
+            setAlert({message: "Error retrieving saved articles"})
+          } else {
+            setSavedArticles(data[0].saved_articles)
+            setAlert({message: ""})
+          }
+        }
+    }
+    getUserSavedArticles()
+
+  }, [userID])
+
+
+  const updateSavedArticles = async() => {
+
+    const newArticle=[...savedArticles, {"title": `${title}`, "image_url": `${image}`, "article_url": `${url}`, "publishedAt": `${publishedAt}`}]
+
+    const {data, error} = await supabase
+
+      .from('users')
+      .update({
+        saved_articles: newArticle
+      })
+      .eq('user_id', userID)
+
+      if (error) {
+        console.log("error", error)
+      } 
+    }
+
+
 
   let interval = (Date.now() - Date.parse(publishedAt)) / 1000 / 60 / 60;
   let timeSincePublication=""
@@ -32,7 +78,7 @@ function ArticleCardMinor(props) {
     timeSincePublication=`${interval} day`
   }
 
-  // DAY  
+  // DAYS  
   if (interval >= 48) {
     interval=Math.floor(interval/24)
     timeSincePublication=`${interval} days`
@@ -40,6 +86,7 @@ function ArticleCardMinor(props) {
 
   return(
     <div className="article-card-minor">
+      Saved articles: {savedArticles.length} UserID = {userID}
       
       <div className="article-card-minor__title">
         {title}
@@ -72,10 +119,19 @@ function ArticleCardMinor(props) {
       <div className="article-card-minor__time">
         {timeSincePublication}
       </div>
-
+      <div>
+        <>
+        {userID
+        ?
+        <button onClick={updateSavedArticles}>Save</button>
+        : <></>
+        }
+        </>
+      </div>  
     </div>
   )
+  }
   
-}
+
 
 export default ArticleCardMinor

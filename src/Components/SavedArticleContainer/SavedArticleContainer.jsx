@@ -56,8 +56,8 @@ function SavedArticleContainer( {userID} ) {
             <div key={article.title}>
               <SavedArticleCard
                 title = {article.title}
-                image={article.imagel}
-                url={article.url}
+                image={article.image_url}
+                url={article.article_url}
                 publishedAt={article.publishedAt}
                 savedArticles={savedArticles}
                 userID={userID}
@@ -68,7 +68,7 @@ function SavedArticleContainer( {userID} ) {
         
       </div>
   </div>
- 
+
   )
 }
 

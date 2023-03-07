@@ -6,7 +6,7 @@ function Account({userID}) {
   return(
     <div>
       <div>
-        Account page
+        <h2>Saved articles</h2>
       </div>
 
       <div>

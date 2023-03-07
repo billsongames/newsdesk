@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { supabase } from '../../api/api';
 import axios from 'axios'
 
 import Sidebar from "../Sidebar/Sidebar"
@@ -10,29 +11,54 @@ import "./article-container.css"
 import { testData } from "../../data/data";
 import APITest from "../APITest/APITest";
 
-function ArticleContainer({articleCategory, searchQuery}) {
+function ArticleContainer({userID, articleCategory, searchQuery}) {
+
   const testMode=true
 
   const [articles,setArticles] = useState([])
+  const [savedArticles,setSavedArticles] = useState([])
+  const [alert,setAlert] = useState({message: ""})
   const [reverse, setReverse] = useState(false);
+
   const reverseOrder = () => {
     setReverse(!reverse);
   };
 
   const sortedArticles = reverse ? articles.slice().reverse() : articles;
 
-  const [alert,setAlert] = useState({message: ""})
 
-  useEffect(() => {
+
+/*   useEffect(() => {
+    async function getUserSavedArticles() {
+      if (userID) {
+        const {data, error} = await supabase
+          .from('users')
+          .select('saved_articles')
+          .eq('user_id', `${userID}`)
+    
+          if (error) {
+            console.log("error", error)
+            setAlert({message: "Error retrieving saved articles"})
+          } else {
+            setSavedArticles(data[0].saved_articles)
+            setAlert({message: ""})
+          }
+        }
+    }
+    getUserSavedArticles()
+
+  }, [userID]) */
+
+/*   useEffect(() => {
     if (testMode) {
       setArticles(testData.articles)
     }
-  }, [testMode])
+  }, [testMode]) */
 
 
  // TOP HEADLINES ENDPOINT
 
-/*   useEffect(() => {
+  useEffect(() => {
     if (!searchQuery) {
       console.log(`No search query, ${articleCategory} category displayed`)
       axios
@@ -77,7 +103,7 @@ function ArticleContainer({articleCategory, searchQuery}) {
       })
     }
   
-  } ,[articleCategory, searchQuery]) */
+  } ,[articleCategory, searchQuery])
 
 
 
@@ -105,6 +131,8 @@ function ArticleContainer({articleCategory, searchQuery}) {
               url={article.url}
               source={article.source.name}
               publishedAt={article.publishedAt}
+              userID={userID}
+/*               savedArticles={savedArticles} */
             />
         </div>
       ))}
