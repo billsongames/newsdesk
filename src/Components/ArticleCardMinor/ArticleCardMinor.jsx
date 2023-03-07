@@ -4,9 +4,9 @@ import PropTypes from "prop-types"
 import "./article-card-minor.css"
 
 function ArticleCardMinor(props) {
-  const {title, description, content, url, image, source, time} = props
+  const {title, description, content, url, image, source, publishedAt} = props
 
-  let interval = (Date.now() - Date.parse(time)) / 1000 / 60 / 60;
+  let interval = (Date.now() - Date.parse(publishedAt)) / 1000 / 60 / 60;
   let timeSincePublication=""
 
 //MINUTES

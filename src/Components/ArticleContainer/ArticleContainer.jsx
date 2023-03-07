@@ -104,7 +104,7 @@ function ArticleContainer({articleCategory, searchQuery}) {
               image={article.image}
               url={article.url}
               source={article.source.name}
-              time={article.publishedAt}
+              publishedAt={article.publishedAt}
             />
         </div>
       ))}

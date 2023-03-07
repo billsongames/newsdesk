@@ -13,6 +13,7 @@ function SavedArticleContainer( {userID} ) {
 
   const [savedArticles,setSavedArticles] = useState([])
   const [alert,setAlert] = useState({message: ""})
+  
 
   useEffect(() => {
     async function getUserSavedArticles() {
@@ -25,46 +26,35 @@ function SavedArticleContainer( {userID} ) {
           if (error) {
             console.log("error", error)
           } else {
-            const results=[]
-            console.log(data)
-            setSavedArticles(data[0].saved_articles.saved_articles)
-
-/*             for (let i=0; i<data[0].saved_articles.saved_articles.length; i++) {
-
-              const title = (data[0].saved_articles.saved_articles[i].title)
-
-              let articleObject = {
-                title: title
-              }
-
-              results.push(articleObject)
-            }
-            
-            setSavedArticles(results)
-            
-            
-            console.log(results) */
+            setSavedArticles(data[0].saved_articles)
           }
-      }
+        }
     }
     getUserSavedArticles()
 
-  }, [userID])
+  }, [userID], savedArticles)
+
+/*   useEffect(() => {
+    writeNewSavedArticles(savedArticles)
+  }, [writeNewSavedArticles, savedArticles]) */
+
+
+
+
+
 
 
 
 
   return(
+    <>
+    {savedArticles.length >0
+    ?
+    <>
     <div className="saved-article-container">
 
       <div>
-        Saved Articles
-      </div>
-      <div>
-
         <div>
-          <Alert message={alert.message} />
-
           {savedArticles.map((article) => (
 
 
@@ -72,8 +62,10 @@ function SavedArticleContainer( {userID} ) {
               <SavedArticleCard
                 title = {article.title}
                 image={article.imagel}
-                url={article.article}
+                url={article.url}
                 publishedAt={article.publishedAt}
+                savedArticles={savedArticles}
+                userID={userID}
               />
             </div>
           ))}
@@ -81,6 +73,13 @@ function SavedArticleContainer( {userID} ) {
         
       </div>
   </div>
+  </>
+  :
+  <>
+    No saved articles I'm afraid
+  </>
+  }
+  </>
   )
 }
 

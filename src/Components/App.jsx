@@ -53,11 +53,11 @@ function App() {
                   user_id: userID,
                 }])
 
-      if (error) {
-        console.log("error", error)
-      } else {
-        console.log("insert success")   
-    }
+              if (error) {
+                console.log("error", error)
+              } else {
+              console.log("insert success")   
+              }
             }
           }
       }
