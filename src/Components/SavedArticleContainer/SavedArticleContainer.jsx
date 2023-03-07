@@ -6,9 +6,6 @@ import Alert from "../Alert/Alert"
 
 import "./saved-article-container.css"
 
-import { testData } from "../../data/data";
-import APITest from "../APITest/APITest";
-
 function SavedArticleContainer( {userID} ) {
 
   const [savedArticles,setSavedArticles] = useState([])
@@ -25,33 +22,31 @@ function SavedArticleContainer( {userID} ) {
     
           if (error) {
             console.log("error", error)
+            setAlert({message: "Error retrieving saved articles"})
           } else {
             setSavedArticles(data[0].saved_articles)
+            setAlert({message: ""})
           }
         }
     }
     getUserSavedArticles()
 
-  }, [userID], savedArticles)
+  }, [userID])
 
 /*   useEffect(() => {
-    writeNewSavedArticles(savedArticles)
-  }, [writeNewSavedArticles, savedArticles]) */
-
-
-
-
-
-
-
+    if (savedArticles.length === 0) {
+      setAlert({message: "None today"})
+    } else {
+      setAlert({message: ""})
+    }
+  }, [savedArticles.length]) */
 
 
   return(
-    <>
-    {savedArticles.length >0
-    ?
-    <>
     <div className="saved-article-container">
+      <div>
+        <Alert message={alert.message} />
+      </div>
 
       <div>
         <div>
@@ -73,13 +68,7 @@ function SavedArticleContainer( {userID} ) {
         
       </div>
   </div>
-  </>
-  :
-  <>
-    No saved articles I'm afraid
-  </>
-  }
-  </>
+ 
   )
 }
 
