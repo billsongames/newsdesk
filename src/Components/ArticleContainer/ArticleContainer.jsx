@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { supabase } from '../../api/api';
 import axios from 'axios'
 
 import Sidebar from "../Sidebar/Sidebar"
@@ -10,38 +11,43 @@ import "./article-container.css"
 import { testData } from "../../data/data";
 import APITest from "../APITest/APITest";
 
-function ArticleContainer({articleCategory, searchQuery}) {
+function ArticleContainer({userID, articleCategory, searchQuery}) {
+
   const testMode=true
 
   const [articles,setArticles] = useState([])
+  const [savedArticles,setSavedArticles] = useState([])
+  const [alert,setAlert] = useState({message: ""})
   const [reverse, setReverse] = useState(false);
-  const [selected, setSelected] = useState("")
+
   const reverseOrder = () => {
     setReverse(!reverse);
   };
-  const handleSelectChange = (selected) => {
-    setSelected(selected);
-    console.log(selected, "<selected");
-  };
 
-  // const sortedArticles = reverse ? articles.slice().reverse() : articles;
+  const sortedArticles = reverse ? articles.slice().reverse() : articles;
 
-  let sortedArticles = articles;
-  if (reverse) {
-    sortedArticles = articles.slice().reverse();
-  }
 
-  let filteredArticles = sortedArticles;
-  if (selected) {
-    filteredArticles = sortedArticles.filter((article) => {
-      return article.source.name === selected;
-    });
-  }
 
-  console.log("sorted", sortedArticles);
-  console.log("filtered", filteredArticles);
+/*   useEffect(() => {
+    async function getUserSavedArticles() {
+      if (userID) {
+        const {data, error} = await supabase
+          .from('users')
+          .select('saved_articles')
+          .eq('user_id', `${userID}`)
+    
+          if (error) {
+            console.log("error", error)
+            setAlert({message: "Error retrieving saved articles"})
+          } else {
+            setSavedArticles(data[0].saved_articles)
+            setAlert({message: ""})
+          }
+        }
+    }
+    getUserSavedArticles()
 
-  const [alert,setAlert] = useState({message: ""})
+  }, [userID]) */
 
   useEffect(() => {
     if (testMode) {
@@ -110,17 +116,12 @@ function ArticleContainer({articleCategory, searchQuery}) {
   return(
     <div className="article-container">
       <div>
-        <Sidebar 
-        reverseOrder={reverseOrder} 
-        articles={articles}
-        selected={selected}
-        setSelected={handleSelectChange}
-        />
+        <Sidebar reverseOrder={reverseOrder} />
       </div>
     
       <div>
         <Alert message={alert.message} />
-        {filteredArticles.map((article) => (
+        {sortedArticles.map((article) => (
           <div key={article.title}>
             <ArticleCardMinor
               title = {article.title}
@@ -129,7 +130,9 @@ function ArticleContainer({articleCategory, searchQuery}) {
               image={article.image}
               url={article.url}
               source={article.source.name}
-              time={article.publishedAt}
+              publishedAt={article.publishedAt}
+              userID={userID}
+/*               savedArticles={savedArticles} */
             />
         </div>
       ))}

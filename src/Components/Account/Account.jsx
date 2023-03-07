@@ -1,10 +1,20 @@
 import React, { useState } from "react";
 
+import SavedArticleContainer from "../SavedArticleContainer/SavedArticleContainer";
+
 function Account({userID}) {
   return(
     <div>
-      Account page
-      user id = {userID}
+      <div>
+        <h2>Saved articles</h2>
+      </div>
+
+      <div>
+        <SavedArticleContainer userID={userID} />
+      </div>
+
+
+
     </div>
   )
 }

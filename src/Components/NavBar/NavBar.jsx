@@ -66,8 +66,12 @@ const NavBar = ({ onNavBarCategoryChange, onSearchSubmit, userID, onLogin, onLog
         </form>
         {userID
           ? <>
-          <Link to={"./account"}>Profile</Link>
-          <button onClick={onLogout}>SignOut</button>
+          <Link to={"./account"}>
+            Profile
+          </Link>
+          <Link to={'/'}>
+            <button onClick={onLogout}>SignOut</button>
+          </Link>
           </>
           : <FacebookLogin
               appId="582093880470486"
