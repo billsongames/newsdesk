@@ -116,7 +116,12 @@ function ArticleContainer({userID, articleCategory, searchQuery}) {
   return(
     <div className="article-container">
       <div>
-        <Sidebar reverseOrder={reverseOrder} />
+      <Sidebar 
+        reverseOrder={reverseOrder} 
+        articles={articles}
+        selected={selected}
+        setSelected={handleSelectChange}
+        />
       </div>
     
       <div>

@@ -89,7 +89,6 @@ function ArticleCardMinor( {title, description, content, image, url, source, pub
 
   return(
     <div className="article-card-minor">
-      Saved articles: {savedArticles.length} UserID = {userID}
       
       <div className="article-card-minor__title">
         {title}
