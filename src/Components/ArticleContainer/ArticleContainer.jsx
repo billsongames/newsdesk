@@ -20,6 +20,7 @@ function ArticleContainer({userID, articleCategory, searchQuery}) {
   const [alert, setAlert] = useState({message: ""})
   const [reverse, setReverse] = useState(false);
   const [selected, setSelected] = useState("")
+  
   const reverseOrder = () => {
     setReverse(!reverse);
   };
