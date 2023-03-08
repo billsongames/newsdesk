@@ -119,8 +119,8 @@ function ArticleContainer({userID, articleCategory, searchQuery}) {
       <Sidebar 
         reverseOrder={reverseOrder} 
         articles={articles}
-        selected={selected}
-        setSelected={handleSelectChange}
+/*         selected={selected}
+        setSelected={handleSelectChange} */
         />
       </div>
     

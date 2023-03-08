@@ -10,6 +10,7 @@ function ArticleCardMinor( {title, description, content, image, url, source, pub
   const articleJSON = {"title": `${title}`, "image_url": `${image}`, "article_url": `${url}`, "publishedAt": `${publishedAt}`}
   const [alert,setAlert] = useState({message: ""})
   const [savedArticles, setSavedArticles] = useState([])
+  const [alreadySaved, setAlreadySaved] = useState(0)
   
   useEffect(() => {
     setTimeout(() => {
@@ -31,9 +32,13 @@ function ArticleCardMinor( {title, description, content, image, url, source, pub
       }
       getUserSavedArticles()
 
-    }, 1000)
+      setAlreadySaved(savedArticles.findIndex(article => 
+          article.title === title))
 
-  }, [userID])
+
+    }, 100)
+
+  }, [userID, savedArticles, title])
 
 
   const updateSavedArticles = async() => {
@@ -119,11 +124,18 @@ function ArticleCardMinor( {title, description, content, image, url, source, pub
       </div>
       
       <div className="article-card-minor__time">
-        {timeSincePublication}
+        {timeSincePublication} ago
       </div>
       <div>
         <>
-        {userID
+        {userID && alreadySaved >=0
+        ?
+        <>Saved to faves</>
+        : <></>
+        }
+
+
+        {userID && alreadySaved === -1
         ?
         <button onClick={updateSavedArticles}>Save</button>
         : <></>

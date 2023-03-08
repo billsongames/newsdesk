@@ -75,7 +75,7 @@ function App() {
         <Navbar onNavBarCategoryChange={handleArticleCategoryChange} onSearchSubmit={handleSearchRequest} userID={userID} onLogin={handleLogin} onLogout={handleLogout}/>
         <Routes>
           <Route path = "/" element={<ArticleContainer userID={userID} articleCategory={articleCategory} searchQuery={search}/>} />
-          <Route path = "/account" element={<Account userID= {userID} />} />
+          <Route path = "/saved-articles" element={<Account userID= {userID} />} />
         </Routes>
       </div>
     </BrowserRouter>
