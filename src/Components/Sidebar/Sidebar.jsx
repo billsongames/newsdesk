@@ -19,6 +19,8 @@ const Sidebar = (props) => {
     reverseOrder();
   };
 
+  const uniqueSources = [...new Set(articles.map(article => article.source.name))];
+
 return (
   <div className="sidebar-container">
     <h2 className="sidebar-filters-text">Sort by Date</h2>
@@ -32,8 +34,8 @@ return (
         <select value={selected}
         onChange={(e) => setSelected(e.target.value)}>
           <option value="">-All Sources-</option>
-          {articles.map((article) => (
-          <option value={article.source.name}>{article.source.name}</option>
+          {uniqueSources.map((source) => (
+          <option value={source}>{source}</option>
           ))}
         </select>
     </div>

@@ -2,6 +2,14 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types"
 import { supabase } from '../../api/api';
 import { tester } from "../../api/api";
+import { 
+  FacebookShareButton, 
+  FacebookIcon, 
+  TwitterShareButton, 
+  TwitterIcon, 
+  WhatsappShareButton, WhatsappIcon, 
+  EmailShareButton, 
+  EmailIcon } from "react-share";
 
 import "./article-card-minor.css"
 
@@ -130,7 +138,39 @@ function ArticleCardMinor( {title, description, content, image, url, source, pub
         : <></>
         }
         </>
-      </div>  
+      </div>
+
+      <div className="social-media">
+      <FacebookShareButton
+          url={url}
+          quote={title}
+          hashtag="#news"
+        >
+        <FacebookIcon size={30} round />
+        </FacebookShareButton>
+
+        <TwitterShareButton
+          url={url}
+          quote={title}
+          hashtag="#news"
+        >
+        <TwitterIcon size={30} round />
+        </TwitterShareButton>
+
+        <WhatsappShareButton
+          url={url}
+          quote={title}
+          >
+        <WhatsappIcon size={30} round/>
+        </WhatsappShareButton>
+
+        <EmailShareButton
+          subject={`${url}`}
+          body={`${title}`}
+        >
+        <EmailIcon size={30} round/>
+        </EmailShareButton>
+      </div>
     </div>
   )
   }
