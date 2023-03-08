@@ -12,7 +12,7 @@
   font-weight: bold;
 }
 
-/* ############################################## */
+
 .article-card-minor__display {
   display: flex;
   flex-flow: row nowrap;
@@ -41,7 +41,51 @@
   font-size: 20px;
 }
 
-/* ############################################## */
+.article-buttons{
+  display: flex;
+  justify-content: right;
+}
+
+.social-media {
+  font-size: 12px;
+  font-weight: bold;
+
+}
+
+.social-media > *{
+  margin: 0px 6px 0px 6px;
+}
+
+.article-save-button-login-prompt {
+  border: none;
+  background-color: antiquewhite;
+  color: black;
+  margin: 0px 10px 0px 0px;
+  width: 250px;
+  height: 32px;
+  font-weight: bold;
+}
+
+
+.article-save-button {
+  background-color: black;
+  color: white;
+  margin: 0px 10px 0px 0px;
+  width: 120px;
+  height: 32px;
+  font-weight: bold;
+}
+
+.article-saved-button {
+  background-color: darkgreen;
+  color: white;
+  margin: 0px 10px 0px 0px;
+  width: 120px;
+  height: 32px;
+  font-weight: bold;
+}
+
+
 
 
 

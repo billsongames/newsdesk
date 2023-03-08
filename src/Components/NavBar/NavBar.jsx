@@ -17,8 +17,10 @@ const NavBar = ({ onNavBarCategoryChange, onSearchSubmit, userID, onLogin, onLog
     };
 
     return (
-    <div className="navbar-container">
+      <>
+      <div className="navbar-container">
         <img className="navbar-logo" src="/logo2.png" alt="logo" />
+
         <div className="navbar-categories">
           <Link to={"/"}>
             <button className="navbar-button" onClick={() => onNavBarCategoryChange("general")}>General</button>
@@ -46,40 +48,55 @@ const NavBar = ({ onNavBarCategoryChange, onSearchSubmit, userID, onLogin, onLog
           </Link>
           <Link to={"/"}>
             <button className="navbar-button" onClick={() => onNavBarCategoryChange("health")}>Health</button>
-          </Link>          
-        </div>  
+          </Link>
+        </div>
+      </div>
 
-            
-
-        <form className='search-form' onSubmit={handleSubmit}>
-            <input 
-                className='search-form__input' 
-                type='text' 
-                placeholder='Search' 
-                value={search}
-                onChange={handleSearchInput}
-        />
-    
-        <button className='search-form__button' type='submit' data-testid='button'>
-            Search
-        </button>
-        </form>
-        {userID
+      {userID
           ? <>
-          <Link to={"./account"}>
-            Profile
-          </Link>
-          <Link to={'/'}>
-            <button onClick={onLogout}>SignOut</button>
-          </Link>
+          <div className="navbar-profile">
+            <Link to={'/'}>
+              <button onClick={onLogout} className="sign-out-button">Sign Out</button>
+            </Link>
+            <Link to={"./saved-articles"}>
+              <button className="saved-articles-button">Saved articles</button>
+            </Link>
+          </div>
+
+
           </>
           : <FacebookLogin
               appId="582093880470486"
               autoLoad={false}
               fields="name,email,picture"
-              callback={onLogin} />    
+              callback={onLogin}
+              cssClass="my-facebook-button-class"
+          />    
         }
-    </div>
+
+      <div className="navbar-search-bar">
+        <form className='search-form' onSubmit={handleSubmit}>
+          <input 
+            className='search-form__input' 
+            type='text' 
+            placeholder='Search' 
+            value={search}
+            onChange={handleSearchInput}
+            />
+    
+          <button className='search-form__button' type='submit' data-testid='button'>
+            Search
+          </button>
+        </form>
+
+
+      </div>        
+      </>
+
+
+            
+
+
     );
 };
 

@@ -18,6 +18,7 @@ function ArticleCardMinor( {title, description, content, image, url, source, pub
   const articleJSON = {"title": `${title}`, "image_url": `${image}`, "article_url": `${url}`, "publishedAt": `${publishedAt}`}
   const [alert,setAlert] = useState({message: ""})
   const [savedArticles, setSavedArticles] = useState([])
+  const [alreadySaved, setAlreadySaved] = useState(0)
   
   useEffect(() => {
     setTimeout(() => {
@@ -39,15 +40,15 @@ function ArticleCardMinor( {title, description, content, image, url, source, pub
       }
       getUserSavedArticles()
 
-    }, 1000)
+      setAlreadySaved(savedArticles.findIndex(article => 
+        article.title === title))
 
-  }, [userID])
+    }, 500)
 
+  }, [userID, savedArticles, title])
 
   const updateSavedArticles = async() => {
-
-    const newArticle=[...savedArticles, articleJSON]
-
+    const newArticle=[articleJSON, ...savedArticles]
     const {data, error} = await supabase
 
       .from('users')
@@ -60,7 +61,6 @@ function ArticleCardMinor( {title, description, content, image, url, source, pub
         console.log("error", error)
       } 
     }
-
 
 
   let interval = (Date.now() - Date.parse(publishedAt)) / 1000 / 60 / 60;
@@ -97,7 +97,6 @@ function ArticleCardMinor( {title, description, content, image, url, source, pub
 
   return(
     <div className="article-card-minor">
-      Saved articles: {savedArticles.length} UserID = {userID}
       
       <div className="article-card-minor__title">
         {title}
@@ -128,52 +127,71 @@ function ArticleCardMinor( {title, description, content, image, url, source, pub
       </div>
       
       <div className="article-card-minor__time">
-        {timeSincePublication}
-      </div>
-      <div>
-        <>
-        {userID
-        ?
-        <button onClick={updateSavedArticles}>Save</button>
-        : <></>
-        }
-        </>
+        {timeSincePublication} ago
       </div>
 
-      <div className="social-media">
-      <FacebookShareButton
-          url={url}
-          quote={title}
-          hashtag="#news"
-        >
-        <FacebookIcon size={30} round />
-        </FacebookShareButton>
+      <div className="article-buttons">
+        <div>
+          <>
+          {userID && alreadySaved >=0
+          ?
+          <button className="article-saved-button" onClick={updateSavedArticles} disabled>Article saved</button>
+          : <></>
+          }
 
-        <TwitterShareButton
-          url={url}
-          quote={title}
-          hashtag="#news"
-        >
-        <TwitterIcon size={30} round />
-        </TwitterShareButton>
+          {userID && alreadySaved === -1
+          ?
+          <button className="article-save-button" onClick={updateSavedArticles}>Save</button>
+          : <></>
+          }
+          </>
+        </div>
 
-        <WhatsappShareButton
-          url={url}
-          quote={title}
-          >
-        <WhatsappIcon size={30} round/>
-        </WhatsappShareButton>
+        <div className="social-media">
+          <>
+          {userID
+          ?
+          <>
+          <FacebookShareButton
+            url={url}
+            quote={title}
+            hashtag="#news"
+            >
+            <FacebookIcon size={30} round />
+          </FacebookShareButton>
 
-        <EmailShareButton
-          subject={`${url}`}
-          body={`${title}`}
-        >
-        <EmailIcon size={30} round/>
-        </EmailShareButton>
-      </div>
-    </div>
+          <TwitterShareButton
+            url={url}
+            quote={title}
+            hashtag="#news"
+            >
+            <TwitterIcon size={30} round />
+          </TwitterShareButton>
+
+          <WhatsappShareButton
+            url={url}
+            quote={title}
+            >
+            <WhatsappIcon size={30} round/>
+          </WhatsappShareButton>
+
+          <EmailShareButton
+            subject={title}
+            body={`${description}`}
+            >
+            <EmailIcon size={30} round/>
+          </EmailShareButton>
+          </>
+          : <><button className="article-save-button-login-prompt" onClick={updateSavedArticles} disabled>Log in to share and save articles</button></>
+          }
+          </>
+        </div>
+      </div>  
+
+  </div>
   )
-  }
+      
+}
   
 
 
