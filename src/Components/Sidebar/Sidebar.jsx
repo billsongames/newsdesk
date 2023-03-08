@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import "./sidebar.css"
 
@@ -40,12 +40,12 @@ return (
         </select>
     </div>
 
-    <h2 className="sidebar-share-text">Share</h2>
+{/*     <h2 className="sidebar-share-text">Share</h2>
       <ul className="sidebar-share">
         <li className="sidebar-share-item"><a href="/">Email</a></li>
         <li className="sidebar-share-item"><a href="/">Twitter</a></li>
         <li className="sidebar-share-item"><a href="/">Facebook</a></li>
-      </ul>
+      </ul> */}
   </div>
 );
 };
