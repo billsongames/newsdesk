@@ -11,7 +11,7 @@ import "./article-container.css"
 import { testData } from "../../data/data";
 import APITest from "../APITest/APITest";
 
-function ArticleContainer({userID, articleCategory, searchQuery}) {
+function ArticleContainer( {userID, articleCategory, searchQuery, sourceSelected} ) {
 
   const testMode=true
 
@@ -24,20 +24,23 @@ function ArticleContainer({userID, articleCategory, searchQuery}) {
   const reverseOrder = () => {
     setReverse(!reverse);
   };
+
   const handleSelectChange = (selected) => {
     setSelected(selected);
     console.log(selected, "<selected");
   };
+
   let sortedArticles = articles;
   if (reverse) {
     sortedArticles = articles.slice().reverse();
-  }
+  } 
+
   let filteredArticles = sortedArticles;
   if (selected) {
     filteredArticles = sortedArticles.filter((article) => {
       return article.source.name === selected;
     });
-  }
+  } 
 
 
 
@@ -62,6 +65,8 @@ function ArticleContainer({userID, articleCategory, searchQuery}) {
     getUserSavedArticles()
 
   }, [userID]) */
+
+/// TEST MODE
 
   useEffect(() => {
     if (testMode) {
@@ -117,7 +122,7 @@ function ArticleContainer({userID, articleCategory, searchQuery}) {
       })
     }
   
-  } ,[articleCategory, searchQuery]) */
+  } ,[articleCategory, searchQuery, sourceSelected]) */
 
 
 
@@ -133,7 +138,7 @@ function ArticleContainer({userID, articleCategory, searchQuery}) {
         <Sidebar 
           reverseOrder={reverseOrder} 
           articles={articles}
-          selected={selected}
+          selected={sourceSelected}
           setSelected={handleSelectChange}
         />
       </div>

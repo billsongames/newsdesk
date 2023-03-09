@@ -96,10 +96,10 @@ function SavedArticleCard({title, image, url, publishedAt, savedArticles, userID
       </div>
       
       <div className="saved-article-card__time">
-        {timeSincePublication}
+        {timeSincePublication} ago
       </div>
       <div>
-        <button onClick={removeElement}>Remove</button>
+        <button className="saved-article-delete-button" onClick={removeElement}>Remove saved article</button>
       </div>
     </div>
     : <></>

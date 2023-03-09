@@ -8,7 +8,7 @@
 
 .article-card-minor__title {
   margin: 0px 0px 10px 0px;
-  font-size: 28px;
+  font-size: 18px;
   font-weight: bold;
 }
 
@@ -33,12 +33,28 @@
 .article-card-minor__description {
   font-weight: bold;
   margin: 0px 10px 10px 10px;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .article-card-minor__content {
   margin: 10px;
-  font-size: 20px;
+  font-size: 14px;
+}
+
+.article-card-minor__url {
+  padding: 2px;
+  font-size: 14px;
+}
+
+.article-card-minor__source {
+  padding: 2px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.article-card-minor__time {
+  font-weight: bold;
+  font-size: 14px;
 }
 
 .article-buttons{
@@ -54,7 +70,14 @@
 
 .social-media > *{
   margin: 0px 6px 0px 6px;
+  transition-duration: 0.2s;
+
 }
+
+.social-media > *:hover{
+  scale: 1.2
+}
+
 
 .article-save-button-login-prompt {
   border: none;
@@ -74,6 +97,13 @@
   width: 120px;
   height: 32px;
   font-weight: bold;
+  border: solid;
+  border-radius: 8px;
+  transition-duration: 0.2s;
+}
+
+.article-save-button:hover{
+  scale: 1.1
 }
 
 .article-saved-button {
@@ -83,6 +113,8 @@
   width: 120px;
   height: 32px;
   font-weight: bold;
+  border: solid;
+  border-radius: 8px;
 }
 
 

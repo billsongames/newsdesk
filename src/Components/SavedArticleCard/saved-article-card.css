@@ -8,11 +8,11 @@
 
 .saved-article-card__title {
   margin: 0px 0px 10px 0px;
-  font-size: 28px;
+  font-size: 18px;
   font-weight: bold;
 }
 
-/* ############################################## */
+
 .saved-article-card__display {
   display: flex;
   flex-flow: row nowrap;
@@ -20,8 +20,8 @@
 }
 
 .saved-article-card__image > img {
-  width: 200px;
-  height: 150px;
+  width: 160px;
+  height: 120px;
   object-fit: cover;
 }
 
@@ -33,12 +33,42 @@
 .saved-article-card__description {
   font-weight: bold;
   margin: 0px 10px 10px 10px;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .saved-article-card__content {
   margin: 10px;
-  font-size: 20px;
+  font-size: 14px;
 }
 
-/* ############################################## */
+.saved-article-card__url {
+  padding: 2px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+
+
+
+
+.saved-article-card__time {
+  padding: 2px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.saved-article-delete-button {
+  background-color: red;
+  color: white;
+  margin: 0px 10px 0px 0px;
+  width: auto;
+  height: 32px;
+  font-weight: bold;
+  border: solid;
+  border-radius: 8px;
+    transition-duration: 0.2s;
+}
+
+.saved-article-delete-button:hover {
+  scale: 1.1
+}

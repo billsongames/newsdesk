@@ -7,7 +7,8 @@ import {
   FacebookIcon, 
   TwitterShareButton, 
   TwitterIcon, 
-  WhatsappShareButton, WhatsappIcon, 
+  WhatsappShareButton, WhatsappIcon,
+  RedditShareButton, RedditIcon,
   EmailShareButton, 
   EmailIcon } from "react-share";
 
@@ -111,15 +112,11 @@ function ArticleCardMinor( {title, description, content, image, url, source, pub
             {description}
           </div>
           <div className="article-card-minor__content">
-            {content}
+            {content} <a href={url} target="blank" className="article-card-minor__url">Read full article</a> 
           </div>  
           
         </div>
 
-      </div>
-
-      <div className="article-card-minor__url">
-        <a href={url} target="blank">Full article</a>     
       </div>
 
       <div className="article-card-minor__source">
@@ -174,6 +171,13 @@ function ArticleCardMinor( {title, description, content, image, url, source, pub
             >
             <WhatsappIcon size={30} round/>
           </WhatsappShareButton>
+
+          <RedditShareButton
+            url={url}
+            title={title}
+            >           
+            <RedditIcon size={30} round />
+          </RedditShareButton>  
 
           <EmailShareButton
             subject={title}
