@@ -12,7 +12,6 @@
   font-weight: bold;
 }
 
-
 .saved-article-card__display {
   display: flex;
   flex-flow: row nowrap;
@@ -43,18 +42,23 @@
 
 .saved-article-card__url {
   padding: 2px;
+  font-size: 14px;
+}
+
+.saved-article-card__source {
+  padding: 2px;
   font-weight: bold;
   font-size: 14px;
 }
 
-
-
-
-
 .saved-article-card__time {
-  padding: 2px;
   font-weight: bold;
   font-size: 14px;
+}
+
+.saved-article-card__buttons {
+  display: flex;
+  justify-content: right;
 }
 
 .saved-article-delete-button {

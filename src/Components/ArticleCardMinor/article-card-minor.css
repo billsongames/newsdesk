@@ -12,7 +12,6 @@
   font-weight: bold;
 }
 
-
 .article-card-minor__display {
   display: flex;
   flex-flow: row nowrap;
@@ -20,8 +19,8 @@
 }
 
 .article-card-minor__image > img {
-  width: 200px;
-  height: 150px;
+  width: 160px;
+  height: 120px;
   object-fit: cover;
 }
 

@@ -3,7 +3,7 @@ import { supabase } from '../../api/api';
 
 import "./saved-article-card.css"
 
-function SavedArticleCard({title, image, url, publishedAt, savedArticles, userID }) {
+function SavedArticleCard({title, description, content, image, url, source, publishedAt, userID, savedArticles }) {
 
   const [indexOfArticle, setIndexofArticle] = useState()
   const [newSavedArticles, setNewSavedArticles] = useState(savedArticles)
@@ -82,23 +82,33 @@ function SavedArticleCard({title, image, url, publishedAt, savedArticles, userID
     <div className="saved-article-card">
       
       <div className="saved-article-card__title">
-      {title}
+        {title}
       </div>
 
       <div className="saved-article-card__display">
         <div className="saved-article-card__image">
-          <img className="image"src={image} alt={title}></img>        
+          <img className="image"src={image} alt={description}></img>        
+        </div>
+
+        <div className="saved-article-card__text">
+          <div className="saved-article-card__description">
+            {description}
+          </div>
+          <div className="saved-article-card__content">
+            {content} <a href={url} target="blank" className="saved-article-card__url">Read full article</a> 
+          </div>          
         </div>
       </div>
 
-      <div className="saved-article-card__url">
-        <a href={url} target="blank">Full article</a>     
+      <div className="saved-article-card__source">
+        Source: {source}
       </div>
       
       <div className="saved-article-card__time">
         {timeSincePublication} ago
       </div>
-      <div>
+
+      <div className="saved-article-card__buttons">
         <button className="saved-article-delete-button" onClick={removeElement}>Remove saved article</button>
       </div>
     </div>

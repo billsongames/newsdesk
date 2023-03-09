@@ -16,7 +16,16 @@ import "./article-card-minor.css"
 
 function ArticleCardMinor( {title, description, content, image, url, source, publishedAt, userID} ) {
 
-  const articleJSON = {"title": `${title}`, "image_url": `${image}`, "article_url": `${url}`, "publishedAt": `${publishedAt}`}
+  const articleJSON = {
+    "title": `${title}`,
+    "description": `${description}`,
+    "content": `${content}`,
+    "image_url": `${image}`,
+    "article_url": `${url}`,
+    "source": `${source}`,
+    "publishedAt": `${publishedAt}`
+  }
+  
   const [alert,setAlert] = useState({message: ""})
   const [savedArticles, setSavedArticles] = useState([])
   const [alreadySaved, setAlreadySaved] = useState(0)
@@ -107,16 +116,15 @@ function ArticleCardMinor( {title, description, content, image, url, source, pub
         <div className="article-card-minor__image">
           <img className="image"src={image} alt={description}></img>        
         </div>
+
         <div className="article-card-minor__text">
           <div className="article-card-minor__description">
             {description}
           </div>
           <div className="article-card-minor__content">
             {content} <a href={url} target="blank" className="article-card-minor__url">Read full article</a> 
-          </div>  
-          
+          </div>          
         </div>
-
       </div>
 
       <div className="article-card-minor__source">
