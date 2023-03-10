@@ -42,7 +42,7 @@ return (
           console.log({selected})
         <option value="">-All Sources-</option>
           {uniqueSources.map((source) => (
-          <option value={source}>{source}</option>
+          <option value={source} key={source}>{source}</option>
           ))}
       </select>
     </div>
