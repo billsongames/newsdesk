@@ -4,7 +4,6 @@ import { supabase } from '../api/api';
 
 import './App.css';
 
-import DateDisplay from './DateDisplay/DateDisplay';
 import Navbar from "./NavBar/NavBar"
 import ArticleContainer from './ArticleContainer/ArticleContainer';
 import Account from "./Account/Account"
@@ -14,6 +13,7 @@ function App() {
   const [userID, setUserID] = useState()
   const [articleCategory, setArticleCategory] = useState("general")
   const [search, setSearch] = useState("")
+  const [sourceSelected, setSourceSelected] = useState("")
 
   const handleLogin = (response) => {
     setUserID(response.id)
@@ -27,11 +27,17 @@ function App() {
   const handleArticleCategoryChange = (newCategory) => {
     setSearch("")
     setArticleCategory(newCategory)
+    setSourceSelected("")
   }
 
   const handleSearchRequest = (searchQuery) => {
     setArticleCategory("")
     setSearch(searchQuery)
+  }
+
+  const resetSource = () => {
+    setSourceSelected("")
+
   }
 
   useEffect(() => {
@@ -71,10 +77,9 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <DateDisplay />
         <Navbar onNavBarCategoryChange={handleArticleCategoryChange} onSearchSubmit={handleSearchRequest} userID={userID} onLogin={handleLogin} onLogout={handleLogout}/>
         <Routes>
-          <Route path = "/" element={<ArticleContainer userID={userID} articleCategory={articleCategory} searchQuery={search}/>} />
+          <Route path = "/" element={<ArticleContainer userID={userID} articleCategory={articleCategory} searchQuery={search} sourceSelected={sourceSelected}/>} />
           <Route path = "/saved-articles" element={<Account userID= {userID} />} />
         </Routes>
       </div>

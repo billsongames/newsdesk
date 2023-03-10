@@ -1,22 +1,30 @@
+.navbar {
+  margin: auto;
+  background-color: white;
+  position: sticky;
+  top: 0;
+  padding-bottom: 4px
+}
+
 .navbar-container {
   margin: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: white;
-  height: 100px;
-
+  padding: 12px;
 }
 
 .navbar-logo {
   margin-right: 15px;
-  height: 80px;
+  height: 50px;
 }
 
 .navbar-categories {
+  align-items: center;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: right;
   margin-right: 15px;
   height: 100%
 }
@@ -46,24 +54,19 @@ text-decoration: underline;
 }
 
 .navbar-button{
-height: 60%;
-font-size: 20px;
+height: 40%;
+font-size: 12px;
 font-weight: bold;
 border:none;
-padding: 8px 8px 0px 8px;
+padding: 8px 8px 4px 8px;
 background-color:white;
-transition-duration: 0.2s;
-border-bottom: 8px solid white;
-border-left: 1px solid grey;
-border-right: 1px solid grey;
-
-
-
+transition-duration: 0.1s;
+border-bottom: 0px solid white;
+/* border-left: 1px solid grey;
+border-right: 1px solid grey; */
 }
 .navbar-button:hover {
-border-bottom: 8px solid black;
-
-
+border-bottom: 6px solid black;
 }
 
 .navbar-button:active {
@@ -72,7 +75,7 @@ text-decoration: underline;
 }
 
 .navbar-search-bar {
-  height: 32px;
+  height: 24px;
   display: flex;
   justify-content: right;
 }
@@ -84,6 +87,18 @@ text-decoration: underline;
   height: 32px;
   font-weight: bold;
   margin: 0px 10px 0px 0px;
+  border: solid;
+  border-radius: 8px;
+  transition-duration: 0.2s;
+}
+
+.my-facebook-button-class:hover {
+  scale: 1.1
+}
+
+.navbar-log-in-search-container{
+  display: flex;
+  justify-content: space-between;
 }
 
 .sign-out-button {
@@ -93,6 +108,13 @@ text-decoration: underline;
   width: 160px;
   height: 32px;
   font-weight: bold;
+  border: solid;
+  border-radius: 8px;
+  transition-duration: 0.2s;
+}
+
+.sign-out-button:hover {
+  scale: 1.1
 }
 
 .saved-articles-button {
@@ -102,13 +124,40 @@ text-decoration: underline;
   width: 160px;
   height: 32px;
   font-weight: bold;
+  border: solid;
+  border-radius: 8px;
+  transition-duration: 0.2s;
+}
+
+.saved-articles-button:hover {
+  scale: 1.1
+}
+
+.search-form {
+  display: flex;
+  align-content: right;
 }
 
 .search-form__input{
   background-color: antiquewhite;
   color: black;
-  margin: 0px 10px 0px 0px;
-  width: 200px;
-  height: 32px;
+  height: 24px;
   font-weight: bold;
+  border: solid 2px;
+  border-radius: 4px;
+}
+
+.search-form__button{
+  background-color: white;
+  border: none;
+  height: 2px
+}
+
+.search-form__button >img {
+  height: 24px;
+  transition-duration: 0.2s;
+}
+
+.search-form__button >img:hover {
+  scale: 1.4;
 }

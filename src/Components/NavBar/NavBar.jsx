@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import FacebookLogin from 'react-facebook-login'
 
+import DateDisplay from '../DateDisplay/DateDisplay';
+
 import "./navbar.css"
 
 const NavBar = ({ onNavBarCategoryChange, onSearchSubmit, userID, onLogin, onLogout }) => {
@@ -17,7 +19,9 @@ const NavBar = ({ onNavBarCategoryChange, onSearchSubmit, userID, onLogin, onLog
     };
 
     return (
-      <>
+      <div className="navbar">
+        <DateDisplay />
+
       <div className="navbar-container">
         <img className="navbar-logo" src="/logo2.png" alt="logo" />
 
@@ -52,11 +56,13 @@ const NavBar = ({ onNavBarCategoryChange, onSearchSubmit, userID, onLogin, onLog
         </div>
       </div>
 
-      {userID
+      <div className="navbar-log-in-search-container">
+        <div className="navbar__facebook-login">
+          {userID
           ? <>
           <div className="navbar-profile">
             <Link to={'/'}>
-              <button onClick={onLogout} className="sign-out-button">Sign Out</button>
+              <button onClick={onLogout} className="sign-out-button">Log out</button>
             </Link>
             <Link to={"./saved-articles"}>
               <button className="saved-articles-button">Saved articles</button>
@@ -73,29 +79,28 @@ const NavBar = ({ onNavBarCategoryChange, onSearchSubmit, userID, onLogin, onLog
               cssClass="my-facebook-button-class"
           />    
         }
+        </div>
 
-      <div className="navbar-search-bar">
         <form className='search-form' onSubmit={handleSubmit}>
           <input 
             className='search-form__input' 
             type='text' 
-            placeholder='Search' 
+            placeholder='Search articles' 
             value={search}
             onChange={handleSearchInput}
             />
     
           <button className='search-form__button' type='submit' data-testid='button'>
-            Search
+            <img src="./search-icon-50px.png"></img>
           </button>
         </form>
+      </div>
 
 
-      </div>        
-      </>
 
 
-            
 
+      </div>
 
     );
 };

@@ -7,6 +7,9 @@ const Sidebar = (props) => {
   const [newArticles, setNewArticles] = useState(true);
   const [oldArticles, setOldArticles] = useState(false);
 
+  
+
+
   const newClickHandler = () => {
     setNewArticles(true);
     setOldArticles(false);
@@ -23,31 +26,32 @@ const Sidebar = (props) => {
 
 return (
   <div className="sidebar-container">
-    <h2 className="sidebar-filters-text">Sort by Date</h2>
-      <div className="sidebar">
-        <button className="sidebar-button" onClick={newClickHandler} disabled={newArticles}>Most Recent</button>
-        <button className="sidebar-button" onClick={oldClickHandler} disabled={oldArticles}>Oldest</button>
-      </div>
+    <div className="sidebar-filters-text">
+      Sort by Date:
 
-    <div>
-      <h2 className="sidebar-filters-text">Filter by Source</h2>
-        <select value={selected}
+{/*       <div className="sidebar-buttons-container"> */}
+      <button className="sidebar-button" onClick={newClickHandler} disabled={newArticles}>Most Recent</button>
+      <button className="sidebar-button" onClick={oldClickHandler} disabled={oldArticles}>Oldest</button>
+    </div>
+
+    <div className="sidebar-filters-text">
+      Filter by Source:
+
+      <select value={selected}
         onChange={(e) => setSelected(e.target.value)}>
-          <option value="">-All Sources-</option>
+          console.log({selected})
+        <option value="">-All Sources-</option>
           {uniqueSources.map((source) => (
           <option value={source}>{source}</option>
           ))}
-        </select>
+      </select>
     </div>
-
-{/*     <h2 className="sidebar-share-text">Share</h2>
-      <ul className="sidebar-share">
-        <li className="sidebar-share-item"><a href="/">Email</a></li>
-        <li className="sidebar-share-item"><a href="/">Twitter</a></li>
-        <li className="sidebar-share-item"><a href="/">Facebook</a></li>
-      </ul> */}
   </div>
+
+
+
 );
-};
+}
+
 
 export default Sidebar;
