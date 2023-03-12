@@ -188,7 +188,7 @@ function ArticleCardMinor( {title, description, content, image, url, source, pub
           </RedditShareButton>  
 
           <EmailShareButton
-            subject={title}
+            subject={url}
             body={`${description}`}
             >
             <EmailIcon size={30} round/>
