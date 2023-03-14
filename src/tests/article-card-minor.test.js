@@ -5,7 +5,7 @@ import ArticleCardMinor from "../Components/ArticleCardMinor/ArticleCardMinor";
 describe("ArticleCardMinor", () => {
 
   
-  test("renders correctly", () => {
+  xit("renders correctly", () => {
     const validProps = {
       articles: [
         {

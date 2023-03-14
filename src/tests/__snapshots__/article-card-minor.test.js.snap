@@ -54,12 +54,14 @@ exports[`ArticleCardMinor renders correctly 1`] = `
       <div
         class="social-media"
       >
-        <button
-          class="article-save-button-login-prompt"
-          disabled=""
-        >
-          Log in to share and save articles
-        </button>
+        <div>
+          <button
+            class="article-save-button-login-prompt"
+            disabled=""
+          >
+            Log in to share and save articles
+          </button>
+        </div>
       </div>
     </div>
   </div>
