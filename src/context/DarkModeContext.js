@@ -10,6 +10,7 @@ function DarkModeProvider(props) {
   const toggleDarkMode = () => {
     setDarkMode(!darkMode)
   }
+
   
 
   return (

@@ -20,7 +20,8 @@
     font-size: 14px;
     font-weight: bold;
     margin: 10px;
-    color: var(--text)
+    color: var(--text);
+    opacity: var(--opacityHigh);
 }
 
 .sidebar-filters-text > select {

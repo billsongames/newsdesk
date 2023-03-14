@@ -18,7 +18,6 @@ function App() {
   const [sourceSelected, setSourceSelected] = useState("")
 
   const handleLogin = (response) => {
-    console.log(response)
     setUserID(response.id)
   }
 
