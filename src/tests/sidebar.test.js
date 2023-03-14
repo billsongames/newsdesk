@@ -72,12 +72,17 @@ describe("Sidebar", () => {
         expect(screen.getByText("Filter by Source:")).toBeInTheDocument();
     });
 
-    xit("has the correct select and option elements", () => {
+    it("has the correct select and option elements", () => {
         render(<Sidebar 
             reverseOrder={validProps.reverseOrder} 
             articles={validProps.articles} 
             selected={validProps.selected} 
             setSelected={validProps.setSelected} />);
+
+            const select = screen.getByTestId("filter");
+            expect(select).toBeInTheDocument();
+            expect(select).toHaveTextContent("-All Sources-");
+            expect(select).toHaveTextContent("test source");
         });
 
     it("matches the snapshot", () => {

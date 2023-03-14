@@ -38,7 +38,7 @@ return (
       <button data-testid="button2" className="sidebar-button" onClick={oldClickHandler} disabled={oldArticles}>Oldest</button>
     </div>
 
-    <div className="sidebar-filters-text">
+    <div className="sidebar-filters-text" data-testid="filter">
       Filter by Source:
 
       <select value={selected}

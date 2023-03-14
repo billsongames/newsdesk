@@ -25,6 +25,7 @@ exports[`Sidebar matches the snapshot 1`] = `
     </div>
     <div
       class="sidebar-filters-text"
+      data-testid="filter"
     >
       Filter by Source:
       <select>
