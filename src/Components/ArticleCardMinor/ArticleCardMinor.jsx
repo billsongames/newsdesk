@@ -225,11 +225,15 @@ function ArticleCardMinor( {title, description, content, image, url, source, pub
   )  
 }    
 
-
+ArticleCardMinor.propTypes = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
+  source: PropTypes.string.isRequired,
+  publishedAt: PropTypes.string.isRequired,
+  userID: PropTypes.string.isRequired
+}
   
-      
-
-  
-
-
 export default ArticleCardMinor

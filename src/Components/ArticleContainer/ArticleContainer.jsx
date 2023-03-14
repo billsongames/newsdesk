@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
+import PropTypes from "prop-types"
 import { supabase } from '../../api/api';
 import axios from 'axios'
 
@@ -19,18 +20,14 @@ import APITest from "../APITest/APITest";
 
 function ArticleContainer( {userID, articleCategory, searchQuery, sourceSelected} ) {
 
-  const testMode=true
+//###########################################
+//                                          #
+// CHANGE THIS TO FALSE FOR LIVE ARTICLES   #
+//                                          #
+  const testMode=true                     //#
+//                                          #
+//###########################################   
 
-/*   const r = document.querySelector(':root');
-
-  const darkMode = useContext(DarkModeContext)
-  if (darkMode) {
-    r.style.setProperty("--background", themeColors.darkColor)
-    r.style.setProperty("--text", themeColors.lightColor)
-  } else {
-    r.style.setProperty("--background", themeColors.lightColor)
-    r.style.setProperty("--text", themeColors.darkColor)
-  } */
 
   const [articles, setArticles] = useState([])
   const [savedArticles, setSavedArticles] = useState([])
@@ -59,8 +56,6 @@ function ArticleContainer( {userID, articleCategory, searchQuery, sourceSelected
     });
   } 
   
-/// TEST MODE
-
   useEffect(() => {
     if (testMode) {
       setArticles(testData.articles)
@@ -146,6 +141,12 @@ function ArticleContainer( {userID, articleCategory, searchQuery, sourceSelected
       </div>  
   </div>
   )
+}
+
+ArticleContainer.propTypes = {
+  userID: PropTypes.string.isRequired,
+  articleCategory: PropTypes.string.isRequired,
+  searchQuery: PropTypes.string.isRequired
 }
 
 export default ArticleContainer

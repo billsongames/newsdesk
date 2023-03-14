@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types"
 
 import "./sidebar.css"
 
@@ -47,11 +48,14 @@ return (
       </select>
     </div>
   </div>
-
-
-
 );
 }
 
+Sidebar.propTypes = {
+  reverseOrder: PropTypes.func.isRequired,
+  articles: PropTypes.array.isRequired,
+  selected: PropTypes.string.isRequired,
+  setSelected: PropTypes.func.isRequired
+}
 
 export default Sidebar;

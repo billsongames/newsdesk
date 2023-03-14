@@ -12,7 +12,7 @@ import Account from "./Account/Account"
 
 function App() {
 
-  const [userID, setUserID] = useState()
+  const [userID, setUserID] = useState("")
   const [articleCategory, setArticleCategory] = useState("general")
   const [search, setSearch] = useState("")
   const [sourceSelected, setSourceSelected] = useState("")
@@ -23,7 +23,7 @@ function App() {
 
   const handleLogout = () => {
     window.FB.logout()
-    setUserID()
+    setUserID("")
   }
 
   const handleArticleCategoryChange = (newCategory) => {

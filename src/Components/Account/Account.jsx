@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types"
 
 import "./account.css"
 
@@ -20,6 +21,10 @@ function Account({userID}) {
 
     </div>
   )
+}
+
+Account.propTypes = {
+  userID: PropTypes.string.isRequired
 }
 
 export default Account

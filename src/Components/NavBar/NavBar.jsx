@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import PropTypes from "prop-types"
 import { Link } from "react-router-dom";
 import FacebookLogin from 'react-facebook-login'
 
@@ -105,19 +106,22 @@ const NavBar = ({ onNavBarCategoryChange, onSearchSubmit, userID, onLogin, onLog
             {darkMode
             ? <img src="./search-icon-50px_dark.png"></img>
             : <img src="./search-icon-50px_light.png"></img>
-            }
-            
+            }            
           </button>
         </form>
+
       </div>
-
-
-
-
-
     </div>
 
   );
 };
+
+NavBar.propTypes = {
+  onNavBarCategoryChange: PropTypes.func.isRequired,
+  onSearchSubmit: PropTypes.func.isRequired,
+  userID: PropTypes.string.isRequired,
+  onLogin: PropTypes.func.isRequired,
+  onLogout: PropTypes.func.isRequired
+}
 
 export default NavBar;
