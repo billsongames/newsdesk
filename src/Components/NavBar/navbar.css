@@ -1,9 +1,11 @@
 .navbar {
   margin: auto;
-  background-color: white;
+  background-color: var(--background);
   position: sticky;
   top: 0;
-  padding-bottom: 4px
+  padding-bottom: 4px;
+  opacity: 100%;
+  z-index: 1;
 }
 
 .navbar-container {
@@ -11,13 +13,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: white;
-  padding: 12px;
+  background-color: var(--background);
+  padding: 6px 0px 12px 0px;
 }
 
 .navbar-logo {
-  margin-right: 15px;
   height: 50px;
+  opacity: var(--opacityHigh);
 }
 
 .navbar-categories {
@@ -55,18 +57,20 @@ text-decoration: underline;
 
 .navbar-button{
 height: 40%;
-font-size: 12px;
+font-size: 14px;
 font-weight: bold;
 border:none;
 padding: 8px 8px 4px 8px;
-background-color:white;
+background-color: var(--background);
 transition-duration: 0.1s;
-border-bottom: 0px solid white;
+border-bottom: 0px solid var(--background);
+color: var(--text);
+opacity: var(--opacityHigh);
 /* border-left: 1px solid grey;
 border-right: 1px solid grey; */
 }
 .navbar-button:hover {
-border-bottom: 6px solid black;
+border-bottom: 6px solid var(--text)
 }
 
 .navbar-button:active {
@@ -81,13 +85,13 @@ text-decoration: underline;
 }
 
 .my-facebook-button-class {
-  background-color: #4267B2;
-  color: white;
+  background-color: var(--fbLogin);
+  color: #EEEEEE;
   width: 160px;
   height: 32px;
   font-weight: bold;
   margin: 0px 10px 0px 0px;
-  border: solid;
+  border: 2px solid #4267B2;
   border-radius: 8px;
   transition-duration: 0.2s;
 }
@@ -102,13 +106,13 @@ text-decoration: underline;
 }
 
 .sign-out-button {
-  background-color: #4267B2;
-  color: white;
-  margin: 0px 10px 0px 0px;
+  background-color: var(--fbLogin);
+  color: #EEEEEE;
   width: 160px;
   height: 32px;
   font-weight: bold;
-  border: solid;
+  margin: 0px 10px 0px 0px;
+  border: 2px solid #4267B2;
   border-radius: 8px;
   transition-duration: 0.2s;
 }
@@ -118,13 +122,13 @@ text-decoration: underline;
 }
 
 .saved-articles-button {
-  background-color: black;
-  color: white;
+  background-color: var(--savedArticleButtonColor);
+  color: #EEEEEE;
   margin: 0px 10px 0px 0px;
   width: 160px;
   height: 32px;
   font-weight: bold;
-  border: solid;
+  border: 2px solid var(--purpleButtonBorder);
   border-radius: 8px;
   transition-duration: 0.2s;
 }
@@ -139,8 +143,8 @@ text-decoration: underline;
 }
 
 .search-form__input{
-  background-color: antiquewhite;
-  color: black;
+  background-color: var(--background);
+  color: var(--text);
   height: 24px;
   font-weight: bold;
   border: solid 2px;
@@ -148,9 +152,9 @@ text-decoration: underline;
 }
 
 .search-form__button{
-  background-color: white;
+  background-color: var(--background);
   border: none;
-  height: 2px
+  height: 2px;
 }
 
 .search-form__button >img {

@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import PropTypes from "prop-types"
+import { DarkModeContext } from "../../context/DarkModeContext";
+
 import { supabase } from '../../api/api';
 import { tester } from "../../api/api";
+
 import { 
   FacebookShareButton, 
   FacebookIcon, 
@@ -13,8 +16,20 @@ import {
   EmailIcon } from "react-share";
 
 import "./article-card-minor.css"
+import {themeColors} from "../../themes/themes"
 
 function ArticleCardMinor( {title, description, content, image, url, source, publishedAt, userID} ) {
+
+  const darkMode = useContext(DarkModeContext)
+
+  const [lightShareButtonFillColors, setLightShareButtonFillColors] = useState(["#4267B2", "#00ACED", "#25D366","#FF4500", "#7F7F7F"])
+  const [darkShareButtonFillColors, setDarkShareButtonFillColors] = useState(["#121212", "#121212", "#121212","#121212", "#121212"])
+  const [shareButtonFillColors, setShareButtonFillColors] = useState([])
+
+  
+  // FB, TWITTER, WHATSAPP, REDDIT, EMAIL
+
+
 
   const articleJSON = {
     "title": `${title}`,
@@ -29,6 +44,9 @@ function ArticleCardMinor( {title, description, content, image, url, source, pub
   const [alert,setAlert] = useState({message: ""})
   const [savedArticles, setSavedArticles] = useState([])
   const [alreadySaved, setAlreadySaved] = useState(0)
+
+
+  
   
   useEffect(() => {
     setTimeout(() => {
@@ -105,7 +123,9 @@ function ArticleCardMinor( {title, description, content, image, url, source, pub
     timeSincePublication=`${interval} days`
   }
 
+
   return(
+    
     <div className="article-card-minor">
       
       <div className="article-card-minor__title">
@@ -116,7 +136,6 @@ function ArticleCardMinor( {title, description, content, image, url, source, pub
         <div className="article-card-minor__image">
           <img className="image"src={image} alt={description}></img>        
         </div>
-
         <div className="article-card-minor__text">
           <div className="article-card-minor__description">
             {description}
@@ -143,7 +162,6 @@ function ArticleCardMinor( {title, description, content, image, url, source, pub
           <button className="article-saved-button" onClick={updateSavedArticles} disabled>Article saved</button>
           : <></>
           }
-
           {userID && alreadySaved === -1
           ?
           <button className="article-save-button" onClick={updateSavedArticles}>Save</button>
@@ -152,17 +170,19 @@ function ArticleCardMinor( {title, description, content, image, url, source, pub
           </>
         </div>
 
+
+{/* FB, TWITTER, WHATSAPP, REDDIT, EMAIL */}
         <div className="social-media">
-          <>
+
           {userID
           ?
           <>
           <FacebookShareButton
             url={url}
             quote={title}
-            hashtag="#news"
+            hashtag="#news"            
             >
-            <FacebookIcon size={30} round />
+            <FacebookIcon size={30} round bgStyle={{ fill: lightShareButtonFillColors[0], stroke: 'white', strokeWidth: '0' }} />
           </FacebookShareButton>
 
           <TwitterShareButton
@@ -170,41 +190,50 @@ function ArticleCardMinor( {title, description, content, image, url, source, pub
             quote={title}
             hashtag="#news"
             >
-            <TwitterIcon size={30} round />
+            <TwitterIcon size={30} round bgStyle={{ fill: lightShareButtonFillColors[1], stroke: 'white', strokeWidth: '0' }} />
           </TwitterShareButton>
 
           <WhatsappShareButton
             url={url}
             quote={title}
             >
-            <WhatsappIcon size={30} round/>
+            <WhatsappIcon size={30} round bgStyle={{ fill: lightShareButtonFillColors[2], stroke: 'white', strokeWidth: '0' }} />
           </WhatsappShareButton>
 
           <RedditShareButton
             url={url}
             title={title}
             >           
-            <RedditIcon size={30} round />
+            <RedditIcon size={30} round bgStyle={{ fill: lightShareButtonFillColors[3], stroke: 'white', strokeWidth: '0' }} />
           </RedditShareButton>  
 
           <EmailShareButton
             subject={url}
             body={`${description}`}
             >
-            <EmailIcon size={30} round/>
+            <EmailIcon size={30} round bgStyle={{ fill: lightShareButtonFillColors[4], stroke: 'white', strokeWidth: '0' }} />
           </EmailShareButton>
           </>
-          : <><button className="article-save-button-login-prompt" onClick={updateSavedArticles} disabled>Log in to share and save articles</button></>
+          :
+          <div>
+            <button className="article-save-button-login-prompt" onClick={updateSavedArticles} disabled>Log in to share and save articles</button>
+          </div>
           }
-          </>
-        </div>
-      </div>  
-
+      </div>
+    </div>
   </div>
-  )
-      
+  )  
+}    
+
+ArticleCardMinor.propTypes = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
+  source: PropTypes.string.isRequired,
+  publishedAt: PropTypes.string.isRequired,
+  userID: PropTypes.string.isRequired
 }
   
-
-
 export default ArticleCardMinor

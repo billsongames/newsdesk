@@ -1,19 +1,33 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import PropTypes from "prop-types"
 import { supabase } from '../../api/api';
 import axios from 'axios'
+
+
+import { DarkModeContext } from "../../context/DarkModeContext";
 
 import Sidebar from "../Sidebar/Sidebar"
 import ArticleCardMinor from "../ArticleCardMinor/ArticleCardMinor";
 import Alert from "../Alert/Alert"
 
 import "./article-container.css"
+import {themeColors} from "../../themes/themes"
 
 import { testData } from "../../data/data";
 import APITest from "../APITest/APITest";
 
+
+
 function ArticleContainer( {userID, articleCategory, searchQuery, sourceSelected} ) {
 
-  const testMode=true
+//###########################################
+//                                          #
+// CHANGE THIS TO FALSE FOR LIVE ARTICLES   #
+//                                          #
+  const testMode=true                     //#
+//                                          #
+//###########################################   
+
 
   const [articles, setArticles] = useState([])
   const [savedArticles, setSavedArticles] = useState([])
@@ -41,95 +55,59 @@ function ArticleContainer( {userID, articleCategory, searchQuery, sourceSelected
       return article.source.name === selected;
     });
   } 
-
-
-
   
-/*   useEffect(() => {
-    async function getUserSavedArticles() {
-      if (userID) {
-        const {data, error} = await supabase
-          .from('users')
-          .select('saved_articles')
-          .eq('user_id', `${userID}`)
-    
-          if (error) {
-            console.log("error", error)
-            setAlert({message: "Error retrieving saved articles"})
-          } else {
-            setSavedArticles(data[0].saved_articles)
-            setAlert({message: ""})
-          }
-        }
-    }
-    getUserSavedArticles()
-
-  }, [userID]) */
-
-/// TEST MODE
-
   useEffect(() => {
     if (testMode) {
       setArticles(testData.articles)
-    }
-  }, [testMode])
+    } else {
 
+ // TOP HEADLINES ENDPOINT      
 
- // TOP HEADLINES ENDPOINT
-
-/*   useEffect(() => {
-    if (!searchQuery) {
-      console.log(`No search query, ${articleCategory} category displayed`)
-      axios
-      .get(`https://gnews.io/api/v4/top-headlines?category=${articleCategory}&lang=en&country=gb&sortby=publishedAt&apikey=445b4b502608f3804329f4428b41b723`)
-
-      .then(function (response) {
-        setArticles(response.data.articles)
-        setAlert({
-          message: ""
-        })
-
-      })
-      .catch(function (error) {
-        setAlert({
-          message: "ERROR RETRIEVING ARTICLES. PLEASE TRY LATER..."
-        })
-        console.log(error);
-      })
-    }
-
-// SEARCH QUERY ENDPOINT
-    
-    else if (!articleCategory) {
-      console.log(`Search query = ${searchQuery}, no category displayed`)
-
-      axios
-      .get(`https://gnews.io/api/v4/search?q=${searchQuery}&lang=en&country=us&max=10&apikey=445b4b502608f3804329f4428b41b723`)
-
-      .then(function (response) {
-        setAlert({
-          message: ""
-        })
-        setArticles(response.data.articles)
-        
-
-      })
-      .catch(function (error) {
-        setAlert({
-          message: "ERROR RETRIEVING ARTICLES. PLEASE TRY LATER..."
-        })  
-        console.log(error);
-      })
-    }
+      if (!searchQuery) {
+        console.log(`No search query, ${articleCategory} category displayed`)
+        axios
+        .get(`https://gnews.io/api/v4/top-headlines?category=${articleCategory}&lang=en&country=gb&sortby=publishedAt&apikey=445b4b502608f3804329f4428b41b723`)
   
-  } ,[articleCategory, searchQuery, sourceSelected]) */
-
-
-
-
-
-
-
+        .then(function (response) {
+          setArticles(response.data.articles)
+          setAlert({
+            message: ""
+          })
+  
+        })
+        .catch(function (error) {
+          setAlert({
+            message: "ERROR RETRIEVING ARTICLES. PLEASE TRY LATER..."
+          })
+          console.log(error);
+        })
+      }
+  
+  // SEARCH QUERY ENDPOINT
+      
+      else if (!articleCategory) {
+        console.log(`Search query = ${searchQuery}, no category displayed`)
+  
+        axios
+        .get(`https://gnews.io/api/v4/search?q=${searchQuery}&lang=en&country=us&max=10&apikey=445b4b502608f3804329f4428b41b723`)
+  
+        .then(function (response) {
+          setAlert({
+            message: ""
+          })
+          setArticles(response.data.articles)
+          
+  
+        })
+        .catch(function (error) {
+          setAlert({
+            message: "ERROR RETRIEVING ARTICLES. PLEASE TRY LATER..."
+          })  
+          console.log(error);
+        })
+      }
+    }
+  }, [testMode, articleCategory, searchQuery ])
 
 
   return(
@@ -163,6 +141,12 @@ function ArticleContainer( {userID, articleCategory, searchQuery, sourceSelected
       </div>  
   </div>
   )
+}
+
+ArticleContainer.propTypes = {
+  userID: PropTypes.string.isRequired,
+  articleCategory: PropTypes.string.isRequired,
+  searchQuery: PropTypes.string.isRequired
 }
 
 export default ArticleContainer

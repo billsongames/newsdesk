@@ -1,5 +1,6 @@
 .App {
   margin: auto;
   width: 1000px;
-  position: static
+  position: static;
+  background-color: var(--background);
 }

@@ -1,29 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import PropTypes from "prop-types"
 import { Link } from "react-router-dom";
 import FacebookLogin from 'react-facebook-login'
+
+import { DarkModeContext } from "../../context/DarkModeContext";
 
 import DateDisplay from '../DateDisplay/DateDisplay';
 
 import "./navbar.css"
 
 const NavBar = ({ onNavBarCategoryChange, onSearchSubmit, userID, onLogin, onLogout }) => {
-    const [search, setSearch] = useState("");
 
-    const handleSearchInput = (event) => {
-        setSearch(event.target.value);
-    };
+  const {darkMode} = useContext(DarkModeContext)
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        onSearchSubmit(search)
-    };
+  const [search, setSearch] = useState("");
 
-    return (
-      <div className="navbar">
-        <DateDisplay />
+  const handleSearchInput = (event) => {
+    setSearch(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    onSearchSubmit(search)
+  };
+
+  return (
+    <div className="navbar">
+      <DateDisplay />
 
       <div className="navbar-container">
-        <img className="navbar-logo" src="/logo2.png" alt="logo" />
+      <Link to={"/"}>
+        {darkMode
+        ? <img className="navbar-logo" src="/logo2_dark.png" alt="logo" />
+        : <img className="navbar-logo" src="/logo2_light.png" alt="logo" />
+        }
+      </Link>  
 
         <div className="navbar-categories">
           <Link to={"/"}>
@@ -77,6 +88,7 @@ const NavBar = ({ onNavBarCategoryChange, onSearchSubmit, userID, onLogin, onLog
               fields="name,email,picture"
               callback={onLogin}
               cssClass="my-facebook-button-class"
+              cookie={true}
           />    
         }
         </div>
@@ -91,18 +103,25 @@ const NavBar = ({ onNavBarCategoryChange, onSearchSubmit, userID, onLogin, onLog
             />
     
           <button className='search-form__button' type='submit' data-testid='button'>
-            <img src="./search-icon-50px.png"></img>
+            {darkMode
+            ? <img src="./search-icon-50px_dark.png"></img>
+            : <img src="./search-icon-50px_light.png"></img>
+            }            
           </button>
         </form>
-      </div>
-
-
-
-
 
       </div>
+    </div>
 
-    );
+  );
 };
+
+NavBar.propTypes = {
+  onNavBarCategoryChange: PropTypes.func.isRequired,
+  onSearchSubmit: PropTypes.func.isRequired,
+  userID: PropTypes.string.isRequired,
+  onLogin: PropTypes.func.isRequired,
+  onLogout: PropTypes.func.isRequired
+}
 
 export default NavBar;

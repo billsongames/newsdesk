@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types"
 import { supabase } from '../../api/api';
 
 import SavedArticleCard from "../SavedArticleCard/SavedArticleCard";
@@ -73,6 +74,10 @@ function SavedArticleContainer( {userID} ) {
   </div>
 
   )
+}
+
+SavedArticleContainer.propTypes = {
+  userID: PropTypes.string.isRequired
 }
 
 export default SavedArticleContainer

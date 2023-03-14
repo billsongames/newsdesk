@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types"
 import { supabase } from '../../api/api';
 
 import "./saved-article-card.css"
@@ -118,6 +119,16 @@ function SavedArticleCard({title, description, content, image, url, source, publ
   )
 }
 
-
+SavedArticleCard.propTypes = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
+  source: PropTypes.string.isRequired,
+  publishedAt: PropTypes.string.isRequired,
+  userID: PropTypes.string.isRequired,
+  savedArticles: PropTypes.array.isRequired
+}
 
 export default SavedArticleCard
