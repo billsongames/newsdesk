@@ -7,8 +7,8 @@ const Sidebar = (props) => {
   const { reverseOrder, articles, selected, setSelected } = props;
   const [newArticles, setNewArticles] = useState(true);
   const [oldArticles, setOldArticles] = useState(false);
-
-  
+  const [uniqueSources, setUniqueSources] = useState([])
+  const [sourceSelected, setSourceSelected] = useState(selected)
 
 
   const newClickHandler = () => {
@@ -23,14 +23,17 @@ const Sidebar = (props) => {
     reverseOrder();
   };
 
-  const uniqueSources = [...new Set(articles.map(article => article.source.name))];
+  useEffect(() => {
+    setUniqueSources([...new Set(articles.map(article => article.source.name))])
+
+  }, [articles])
+
+//  const uniqueSources = [...new Set(articles.map(article => article.source.name))];
 
 return (
   <div className="sidebar-container">
     <div className="sidebar-filters-text">
       Sort by Date:
-
-{/*       <div className="sidebar-buttons-container"> */}
       <button className="sidebar-button" onClick={newClickHandler} disabled={newArticles}>Most Recent</button>
       <button className="sidebar-button" onClick={oldClickHandler} disabled={oldArticles}>Oldest</button>
     </div>
@@ -54,7 +57,6 @@ return (
 Sidebar.propTypes = {
   reverseOrder: PropTypes.func.isRequired,
   articles: PropTypes.array.isRequired,
-  selected: PropTypes.string.isRequired,
   setSelected: PropTypes.func.isRequired
 }
 

@@ -18,7 +18,7 @@ import APITest from "../APITest/APITest";
 
 
 
-function ArticleContainer( {userID, articleCategory, searchQuery, sourceSelected} ) {
+function ArticleContainer( {userID, articleCategory, searchQuery} ) {
 
 //###########################################
 //                                          #
@@ -73,7 +73,7 @@ function ArticleContainer( {userID, articleCategory, searchQuery, sourceSelected
           setAlert({
             message: ""
           })
-  
+          setSelected("");
         })
         .catch(function (error) {
           setAlert({
@@ -116,7 +116,7 @@ function ArticleContainer( {userID, articleCategory, searchQuery, sourceSelected
         <Sidebar 
           reverseOrder={reverseOrder} 
           articles={articles}
-          selected={sourceSelected}
+          selected={selected}
           setSelected={handleSelectChange}
         />
       </div>
