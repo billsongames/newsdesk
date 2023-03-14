@@ -1,6 +1,13 @@
 .date-display {
   padding: 4px;
-  text-align: right;
-  font-size: 14px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: var(--text);
+  opacity: var(--opacityHigh);
   font-weight: bold;
+}
+
+.dark-toggle > img {
+  height: 30px
 }

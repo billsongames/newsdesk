@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import PropTypes from "prop-types"
+import { DarkModeContext } from "../../context/DarkModeContext";
+
 import { supabase } from '../../api/api';
 import { tester } from "../../api/api";
+
 import { 
   FacebookShareButton, 
   FacebookIcon, 
@@ -13,8 +16,20 @@ import {
   EmailIcon } from "react-share";
 
 import "./article-card-minor.css"
+import {themeColors} from "../../themes/themes"
 
 function ArticleCardMinor( {title, description, content, image, url, source, publishedAt, userID} ) {
+
+/*   const r = document.querySelector(':root');
+
+  const darkMode = useContext(DarkModeContext)
+  if (darkMode) {
+    r.style.setProperty("--background", themeColors.darkColor)
+    r.style.setProperty("--text", themeColors.lightColor)
+  } else {
+    r.style.setProperty("--background", themeColors.lightColor)
+    r.style.setProperty("--text", themeColors.darkColor)
+  } */
 
   const articleJSON = {
     "title": `${title}`,

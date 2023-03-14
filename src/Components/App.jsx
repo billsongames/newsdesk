@@ -1,21 +1,24 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { supabase } from '../api/api';
 
 import './App.css';
+
+import { DarkModeProvider } from '../context/DarkModeContext';
 
 import Navbar from "./NavBar/NavBar"
 import ArticleContainer from './ArticleContainer/ArticleContainer';
 import Account from "./Account/Account"
 
 function App() {
-  
+
   const [userID, setUserID] = useState()
   const [articleCategory, setArticleCategory] = useState("general")
   const [search, setSearch] = useState("")
   const [sourceSelected, setSourceSelected] = useState("")
 
   const handleLogin = (response) => {
+    console.log(response)
     setUserID(response.id)
   }
 
@@ -77,11 +80,15 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <Navbar onNavBarCategoryChange={handleArticleCategoryChange} onSearchSubmit={handleSearchRequest} userID={userID} onLogin={handleLogin} onLogout={handleLogout}/>
-        <Routes>
-          <Route path = "/" element={<ArticleContainer userID={userID} articleCategory={articleCategory} searchQuery={search} sourceSelected={sourceSelected}/>} />
-          <Route path = "/saved-articles" element={<Account userID= {userID} />} />
-        </Routes>
+        <DarkModeProvider>
+          <Navbar onNavBarCategoryChange={handleArticleCategoryChange} onSearchSubmit={handleSearchRequest} userID={userID} onLogin={handleLogin} onLogout={handleLogout}/>
+          <Routes>
+            <Route path = "/" element={<ArticleContainer userID={userID} articleCategory={articleCategory} searchQuery={search} sourceSelected={sourceSelected}/>} />
+            <Route path = "/saved-articles" element={<Account userID= {userID} />} />
+          </Routes>
+        </DarkModeProvider>
+
+
       </div>
     </BrowserRouter>
   );

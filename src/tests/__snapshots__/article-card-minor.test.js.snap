@@ -26,17 +26,16 @@ exports[`ArticleCardMinor renders correctly 1`] = `
         />
         <div
           class="article-card-minor__content"
-        />
+        >
+           
+          <a
+            class="article-card-minor__url"
+            target="blank"
+          >
+            Read full article
+          </a>
+        </div>
       </div>
-    </div>
-    <div
-      class="article-card-minor__url"
-    >
-      <a
-        target="blank"
-      >
-        Full article
-      </a>
     </div>
     <div
       class="article-card-minor__source"
@@ -45,7 +44,24 @@ exports[`ArticleCardMinor renders correctly 1`] = `
     </div>
     <div
       class="article-card-minor__time"
-    />
+    >
+       ago
+    </div>
+    <div
+      class="article-buttons"
+    >
+      <div />
+      <div
+        class="social-media"
+      >
+        <button
+          class="article-save-button-login-prompt"
+          disabled=""
+        >
+          Log in to share and save articles
+        </button>
+      </div>
+    </div>
   </div>
 </DocumentFragment>
 `;

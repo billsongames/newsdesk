@@ -1,4 +1,10 @@
+/* :root {
+  --background: #EEEEEE;
+  --text: #121212;
+} */
+
 .error-message {
+  background-color: var(--background);
   font-size: 30px;
   color: red
 }
