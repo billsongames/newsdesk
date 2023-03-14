@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 
 import Sidebar from "../Components/Sidebar/Sidebar"
 
@@ -24,7 +24,7 @@ describe("Sidebar", () => {
         setSelected: jest.fn(),
     };
 
-    it("renders filters text and options", () => {
+    it("renders the text and buttons to sort by date", () => {
         render(<Sidebar 
             reverseOrder={validProps.reverseOrder} 
             articles={validProps.articles} 
@@ -34,10 +34,45 @@ describe("Sidebar", () => {
         expect(screen.getByText("Sort by Date:")).toBeInTheDocument();
         expect(screen.getByText("Most Recent")).toBeInTheDocument();
         expect(screen.getByText("Oldest")).toBeInTheDocument();
+    });
+
+    it("calls the correct function when most recent clicked", async () => {
+        render(<Sidebar 
+            reverseOrder={validProps.reverseOrder} 
+            articles={validProps.articles} 
+            selected={validProps.selected} 
+            setSelected={validProps.setSelected} />)
+        const button = screen.getByTestId("button1");
+        const button2 = screen.getByTestId("button2");
+        await fireEvent.click(button2);
+        await fireEvent.click(button);
+
+        expect(validProps.reverseOrder).toHaveBeenCalled();
+    });
+
+    it("calls the correct function when oldest clicked", async () => {
+        render(<Sidebar 
+            reverseOrder={validProps.reverseOrder} 
+            articles={validProps.articles} 
+            selected={validProps.selected} 
+            setSelected={validProps.setSelected} />)
+        const button2 = screen.getByTestId("button2");
+        await fireEvent.click(button2);
+
+        expect(validProps.reverseOrder).toHaveBeenCalledTimes(1);
+    });
+
+    it("renders filters text", () => {
+        render(<Sidebar 
+            reverseOrder={validProps.reverseOrder} 
+            articles={validProps.articles} 
+            selected={validProps.selected} 
+            setSelected={validProps.setSelected} />);
+
         expect(screen.getByText("Filter by Source:")).toBeInTheDocument();
     });
 
-    xit("renders share text and links", () => {
+    xit("has the correct select and option elements", () => {
         render(<Sidebar 
             reverseOrder={validProps.reverseOrder} 
             articles={validProps.articles} 
@@ -54,5 +89,4 @@ describe("Sidebar", () => {
 
             expect(asFragment()).toMatchSnapshot();
     });
-
 });

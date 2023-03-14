@@ -11,12 +11,14 @@ exports[`Sidebar matches the snapshot 1`] = `
       Sort by Date:
       <button
         class="sidebar-button"
+        data-testid="button1"
         disabled=""
       >
         Most Recent
       </button>
       <button
         class="sidebar-button"
+        data-testid="button2"
       >
         Oldest
       </button>
