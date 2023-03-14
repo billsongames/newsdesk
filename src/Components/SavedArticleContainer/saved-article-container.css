@@ -1,6 +1,6 @@
 .saved-article-container {
   display: flex;
-  flex-wrap: nowrap;
+  flex-direction: column;
   background-color: var(--background);
 
 }

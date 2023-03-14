@@ -15,7 +15,6 @@ function App() {
   const [userID, setUserID] = useState("")
   const [articleCategory, setArticleCategory] = useState("general")
   const [search, setSearch] = useState("")
-  const [sourceSelected, setSourceSelected] = useState("")
 
   const handleLogin = (response) => {
     setUserID(response.id)
@@ -29,7 +28,6 @@ function App() {
   const handleArticleCategoryChange = (newCategory) => {
     setSearch("")
     setArticleCategory(newCategory)
-    setSourceSelected("")
   }
 
   const handleSearchRequest = (searchQuery) => {
@@ -37,10 +35,7 @@ function App() {
     setSearch(searchQuery)
   }
 
-  const resetSource = () => {
-    setSourceSelected("")
-
-  }
+  
 
   useEffect(() => {
     async function checkIfUserExists() {
@@ -82,7 +77,7 @@ function App() {
         <DarkModeProvider>
           <Navbar onNavBarCategoryChange={handleArticleCategoryChange} onSearchSubmit={handleSearchRequest} userID={userID} onLogin={handleLogin} onLogout={handleLogout}/>
           <Routes>
-            <Route path = "/" element={<ArticleContainer userID={userID} articleCategory={articleCategory} searchQuery={search} sourceSelected={sourceSelected}/>} />
+            <Route path = "/" element={<ArticleContainer userID={userID} articleCategory={articleCategory} searchQuery={search} />} />
             <Route path = "/saved-articles" element={<Account userID= {userID} />} />
           </Routes>
         </DarkModeProvider>
