@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Sidebar matches the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="sidebar-container"
+  >
+    <div
+      class="sidebar-filters-text"
+    >
+      Sort by Date:
+      <button
+        class="sidebar-button"
+        data-testid="button1"
+        disabled=""
+      >
+        Most Recent
+      </button>
+      <button
+        class="sidebar-button"
+        data-testid="button2"
+      >
+        Oldest
+      </button>
+    </div>
+    <div
+      class="sidebar-filters-text"
+      data-testid="filter"
+    >
+      Filter by Source:
+      <select>
+        console.log()
+        <option
+          value=""
+        >
+          -All Sources-
+        </option>
+        <option
+          value="test source"
+        >
+          test source
+        </option>
+      </select>
+    </div>
+  </div>
+</DocumentFragment>
+`;

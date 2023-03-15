@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Name of the group renders correctly 1`] = `
+<DocumentFragment>
+  <div>
+    <div>
+      test title
+    </div>
+  </div>
+</DocumentFragment>
+`;

@@ -1,11 +1,9 @@
 import React from "react";
-import { render, screen, fireEvent, getNodeText } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import ArticleCardMinor from "../Components/ArticleCardMinor/ArticleCardMinor";
 
 describe("ArticleCardMinor", () => {
 
-  
-  test("renders correctly", () => {
     const validProps = {
       articles: [
         {
@@ -16,18 +14,16 @@ describe("ArticleCardMinor", () => {
           image: "test_image.jpg",
           publishedAt: "1970-01-01T00:0:00Z",
           source: {
-          name: "test source",
+            name: "test source",
             url: "test source url"
           }
-        }
-      ]
-    }  
+      }
+    ]
+  };
 
-    render(<ArticleCardMinor props={validProps.articles} />);
-
+  it("renders correctly", () => {
     const { asFragment } = render(<ArticleCardMinor props={validProps.articles} />);
 
-      expect(asFragment()).toMatchSnapshot();
-
-  })
-})
+    expect(asFragment()).toMatchSnapshot();
+  });
+});

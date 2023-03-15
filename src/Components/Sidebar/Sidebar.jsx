@@ -34,11 +34,11 @@ return (
   <div className="sidebar-container">
     <div className="sidebar-filters-text">
       Sort by Date:
-      <button className="sidebar-button" onClick={newClickHandler} disabled={newArticles}>Most Recent</button>
-      <button className="sidebar-button" onClick={oldClickHandler} disabled={oldArticles}>Oldest</button>
+      <button data-testid="button1" className="sidebar-button" onClick={newClickHandler} disabled={newArticles}>Most Recent</button>
+      <button data-testid="button2" className="sidebar-button" onClick={oldClickHandler} disabled={oldArticles}>Oldest</button>
     </div>
 
-    <div className="sidebar-filters-text">
+    <div className="sidebar-filters-text" data-testid="filter">
       Filter by Source:
 
       <select value={selected}
