@@ -8,6 +8,7 @@ import { DarkModeProvider } from '../context/DarkModeContext';
 
 import Navbar from "./NavBar/NavBar"
 import ArticleContainer from './ArticleContainer/ArticleContainer';
+import SavedArticleContainer from './SavedArticleContainer/SavedArticleContainer';
 import Account from "./Account/Account"
 
 function App() {
@@ -34,8 +35,6 @@ function App() {
     setArticleCategory("")
     setSearch(searchQuery)
   }
-
-  
 
   useEffect(() => {
     async function checkIfUserExists() {

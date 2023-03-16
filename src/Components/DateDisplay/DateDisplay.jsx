@@ -1,4 +1,7 @@
 import React, { useContext } from "react";
+
+import TickerBanner from "../TickerBanner/TickerBanner";
+
 import { DarkModeContext } from "../../context/DarkModeContext";
 import "./date-display.css"
 import {themeColors} from "../../themes/themes"
@@ -55,7 +58,11 @@ function DateDisplay() {
   }
   return(
     <div className="date-display">
-      <div className="date-display">
+      <div>
+        <TickerBanner/>
+      </div>
+
+      <div className="date-display__date">
         {dateString}
       </div>
 

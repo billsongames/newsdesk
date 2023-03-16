@@ -42,12 +42,13 @@
 
 .article-card-minor__content {
   margin: 10px;
+  font-size: 16px;
   opacity: var(--opacityMedium);
 }
 
 .article-card-minor__url {
   padding: 2px;
-  font-size: 14px;
+  font-size: 16px;
   color: var(--text);
   opacity: var(--opacityHigh);
 }

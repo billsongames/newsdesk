@@ -3,3 +3,11 @@
   flex-direction: column;
   background-color: var(--background);
 }
+
+.article-category-title {
+  color: var(--text);
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: capitalize;
+
+}
