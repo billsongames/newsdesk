@@ -8,7 +8,7 @@ const Sidebar = (props) => {
   const [newArticles, setNewArticles] = useState(true);
   const [oldArticles, setOldArticles] = useState(false);
   const [uniqueSources, setUniqueSources] = useState([])
-  const [sourceSelected, setSourceSelected] = useState(selected)
+//  const [sourceSelected, setSourceSelected] = useState(selected)
 
 
   const newClickHandler = () => {

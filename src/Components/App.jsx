@@ -6,15 +6,18 @@ import './App.css';
 
 import { DarkModeProvider } from '../context/DarkModeContext';
 
+import DateDisplay from './DateDisplay/DateDisplay';
 import Navbar from "./NavBar/NavBar"
 import ArticleContainer from './ArticleContainer/ArticleContainer';
 import Account from "./Account/Account"
+
 
 function App() {
 
   const [userID, setUserID] = useState("")
   const [articleCategory, setArticleCategory] = useState("general")
   const [search, setSearch] = useState("")
+  const [tickerText, setTickerText] = useState("")
 
   const handleLogin = (response) => {
     setUserID(response.id)
@@ -33,6 +36,11 @@ function App() {
   const handleSearchRequest = (searchQuery) => {
     setArticleCategory("")
     setSearch(searchQuery)
+  }
+
+  const handleTickerText = (newTickerText) => {
+    setTickerText(newTickerText)
+    console.log(tickerText)
   }
 
   
@@ -75,6 +83,7 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <DarkModeProvider>
+          <DateDisplay />
           <Navbar onNavBarCategoryChange={handleArticleCategoryChange} onSearchSubmit={handleSearchRequest} userID={userID} onLogin={handleLogin} onLogout={handleLogout}/>
           <Routes>
             <Route path = "/" element={<ArticleContainer userID={userID} articleCategory={articleCategory} searchQuery={search} />} />

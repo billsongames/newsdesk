@@ -3,7 +3,8 @@ import { DarkModeContext } from "../../context/DarkModeContext";
 import "./date-display.css"
 import {themeColors} from "../../themes/themes"
 
-function DateDisplay() {
+
+function DateDisplay(tickerText) {
   const {darkMode, toggleDarkMode} = useContext(DarkModeContext)
 
   const r = document.querySelector(':root');

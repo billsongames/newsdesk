@@ -5,7 +5,7 @@ import FacebookLogin from 'react-facebook-login'
 
 import { DarkModeContext } from "../../context/DarkModeContext";
 
-import DateDisplay from '../DateDisplay/DateDisplay';
+//import DateDisplay from '../DateDisplay/DateDisplay';
 
 import "./navbar.css"
 
@@ -26,7 +26,6 @@ const NavBar = ({ onNavBarCategoryChange, onSearchSubmit, userID, onLogin, onLog
 
   return (
     <div className="navbar">
-      <DateDisplay />
 
       <div className="navbar-container">
       <Link to={"/"}>
@@ -101,13 +100,14 @@ const NavBar = ({ onNavBarCategoryChange, onSearchSubmit, userID, onLogin, onLog
             value={search}
             onChange={handleSearchInput}
             />
-    
+          <Link to={"/"}>
           <button className='search-form__button' type='submit' data-testid='button'>
             {darkMode
             ? <img src="./search-icon-50px_dark.png"></img>
             : <img src="./search-icon-50px_light.png"></img>
             }            
           </button>
+          </Link>
         </form>
 
       </div>
