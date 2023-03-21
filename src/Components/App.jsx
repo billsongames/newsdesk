@@ -17,7 +17,6 @@ function App() {
   const [userID, setUserID] = useState("")
   const [articleCategory, setArticleCategory] = useState("general")
   const [search, setSearch] = useState("")
-  const [tickerText, setTickerText] = useState("")
 
   const handleLogin = (response) => {
     setUserID(response.id)
@@ -38,12 +37,6 @@ function App() {
     setSearch(searchQuery)
   }
 
-  const handleTickerText = (newTickerText) => {
-    setTickerText(newTickerText)
-    console.log(tickerText)
-  }
-
-  
 
   useEffect(() => {
     async function checkIfUserExists() {
@@ -56,6 +49,7 @@ function App() {
           if (error) {
             console.log("error", error)
           } else {
+            
           if (count === 0) {
             const { data, error } = await supabase
               .from('users')

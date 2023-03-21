@@ -37,9 +37,8 @@ function ArticleContainer( {userID, articleCategory, searchQuery} ) {
   const [alert, setAlert] = useState({message: ""})
   const [reverse, setReverse] = useState(false);
   const [selected, setSelected] = useState("")
-  const [tickerText, setTickerText] = useState({text: ""})
-  const [topArticleDate, setTopArticleDate] = useState({date: 0})
-  const [firstRun, setFirstRun] = useState(true)
+
+
   
   const reverseOrder = () => {
     setReverse(!reverse);
@@ -63,51 +62,9 @@ function ArticleContainer( {userID, articleCategory, searchQuery} ) {
   }
   
 
-// SET TICKER BANNER
 
 
-  useEffect(() => {
-    if (firstRun) {
-
-      const timer=  setTimeout(() => {
-
-      axios
-        .get(`https://gnews.io/api/v4/top-headlines?category=general&lang=en&country=gb&sortby=publishedAt&apikey=445b4b502608f3804329f4428b41b723`)
-  
-        .then(function (response) {
-          setArticles(response.data.articles)
-          setAlert({
-            message: ""
-          })
-          setSelected("");
-
-          function setText() {
-            setTopArticleDate({date: response.data.articles[0].publishedAt})
-            console.log(topArticleDate)
-            let interval = (Date.now() - Date.parse(topArticleDate.date)) / 1000 / 60 / 60;
-            console.log(interval)
-            if (interval >= 0 && interval < 2) {
-            setTickerText({text: response.data.articles[0].title})              
-            }
-          }
-          setText()
-
-        })
-        .catch(function (error) {
-          setAlert({
-            message: "ERROR RETRIEVING ARTICLES. PLEASE TRY LATER..."
-          })
-          console.log(error);
-        })
-      }, 4000)
-      setFirstRun(false)
-      return() => clearTimeout(timer)      
-    }
-  },[])
-
-
-
-
+// GET ARTICLES
 
   useEffect(() => {
     async function getArticles() {
@@ -184,8 +141,6 @@ function ArticleContainer( {userID, articleCategory, searchQuery} ) {
         />
       </div>
 
-      <TickerBanner text={tickerText.text}/>
-    
       <div>
         <Alert message={alert.message} />
         {filteredArticles.map((article) => (
