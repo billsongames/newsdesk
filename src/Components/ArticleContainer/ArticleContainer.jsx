@@ -1,20 +1,23 @@
 import React, { useEffect, useState, useContext } from "react";
 import PropTypes from "prop-types"
-import { supabase } from '../../api/api';
+//import { supabase } from '../../api/api';
 import axios from 'axios'
 
 
-import { DarkModeContext } from "../../context/DarkModeContext";
+//import { DarkModeContext } from "../../context/DarkModeContext";
 
 import Sidebar from "../Sidebar/Sidebar"
+import TickerBanner from "../TickerBanner/TickerBanner";
 import ArticleCardMinor from "../ArticleCardMinor/ArticleCardMinor";
 import Alert from "../Alert/Alert"
 
 import "./article-container.css"
-import {themeColors} from "../../themes/themes"
+//import {themeColors} from "../../themes/themes"
 
 import { testData } from "../../data/data";
-import APITest from "../APITest/APITest";
+//import APITest from "../APITest/APITest";
+
+
 
 
 
@@ -24,16 +27,18 @@ function ArticleContainer( {userID, articleCategory, searchQuery} ) {
 //                                          #
 // CHANGE THIS TO FALSE FOR LIVE ARTICLES   #
 //                                          #
-  const testMode=true                     //#
+  const testMode=false                     //#
 //                                          #
 //###########################################   
 
 
   const [articles, setArticles] = useState([])
-  const [savedArticles, setSavedArticles] = useState([])
+//  const [savedArticles, setSavedArticles] = useState([])
   const [alert, setAlert] = useState({message: ""})
   const [reverse, setReverse] = useState(false);
   const [selected, setSelected] = useState("")
+
+
   
   const reverseOrder = () => {
     setReverse(!reverse);
@@ -54,14 +59,22 @@ function ArticleContainer( {userID, articleCategory, searchQuery} ) {
     filteredArticles = sortedArticles.filter((article) => {
       return article.source.name === selected;
     });
-  } 
+  }
   
+
+
+
+// GET ARTICLES
+
   useEffect(() => {
-    if (testMode) {
-      setArticles(testData.articles)
+    async function getArticles() {
+
+      if (testMode) {
+        setArticles(testData.articles)
+
     } else {
 
- // TOP HEADLINES ENDPOINT      
+  // TOP HEADLINES ENDPOINT      
 
       if (!searchQuery) {
         console.log(`No search query, ${articleCategory} category displayed`)
@@ -105,9 +118,16 @@ function ArticleContainer( {userID, articleCategory, searchQuery} ) {
           })  
           console.log(error);
         })
+        }
       }
     }
-  }, [testMode, articleCategory, searchQuery ])
+    getArticles()
+
+
+}, [articleCategory, searchQuery, testMode])
+
+
+
 
 
   return(
@@ -120,7 +140,7 @@ function ArticleContainer( {userID, articleCategory, searchQuery} ) {
           setSelected={handleSelectChange}
         />
       </div>
-    
+
       <div>
         <Alert message={alert.message} />
         {filteredArticles.map((article) => (

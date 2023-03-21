@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 
 import "./alert.css"
 
-function Alert({message}){
+function Alert({message} ){
   if(!message) return null  
   
   return(

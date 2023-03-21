@@ -1,0 +1,26 @@
+.ticker-banner {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-items: left;
+  background-color: red;
+  width: 700px;
+  height: 26px
+}
+
+.breaking-news {
+  width: 160px;
+  font-size: 18px;
+  font-weight: bold;
+  justify-items: center;
+  color: white;
+  margin: 2px;
+}
+
+.marquee-container{
+  width: 540px;
+  color: white;
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+}

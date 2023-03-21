@@ -1,9 +1,13 @@
 import React, { useContext } from "react";
 import { DarkModeContext } from "../../context/DarkModeContext";
+
+import TickerBanner from "../TickerBanner/TickerBanner";
+
 import "./date-display.css"
 import {themeColors} from "../../themes/themes"
 
-function DateDisplay() {
+
+function DateDisplay(tickerText) {
   const {darkMode, toggleDarkMode} = useContext(DarkModeContext)
 
   const r = document.querySelector(':root');
@@ -54,10 +58,12 @@ function DateDisplay() {
     toggleDarkMode()
   }
   return(
-    <div className="date-display">
+    <div className="date-display-container">
       <div className="date-display">
         {dateString}
       </div>
+
+      <TickerBanner />
 
       <div className="dark-toggle">
         <img src={darkMode ? "/lightswitch_on.png" : "/lightswitch_off.png"} alt="Dark Mode toggle" onClick={handleClick}/>

@@ -6,9 +6,11 @@ import './App.css';
 
 import { DarkModeProvider } from '../context/DarkModeContext';
 
+import DateDisplay from './DateDisplay/DateDisplay';
 import Navbar from "./NavBar/NavBar"
 import ArticleContainer from './ArticleContainer/ArticleContainer';
 import Account from "./Account/Account"
+
 
 function App() {
 
@@ -35,7 +37,6 @@ function App() {
     setSearch(searchQuery)
   }
 
-  
 
   useEffect(() => {
     async function checkIfUserExists() {
@@ -48,6 +49,7 @@ function App() {
           if (error) {
             console.log("error", error)
           } else {
+            
           if (count === 0) {
             const { data, error } = await supabase
               .from('users')
@@ -75,6 +77,7 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <DarkModeProvider>
+          <DateDisplay />
           <Navbar onNavBarCategoryChange={handleArticleCategoryChange} onSearchSubmit={handleSearchRequest} userID={userID} onLogin={handleLogin} onLogout={handleLogout}/>
           <Routes>
             <Route path = "/" element={<ArticleContainer userID={userID} articleCategory={articleCategory} searchQuery={search} />} />

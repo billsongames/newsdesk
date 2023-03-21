@@ -23,8 +23,8 @@ function ArticleCardMinor( {title, description, content, image, url, source, pub
   const darkMode = useContext(DarkModeContext)
 
   const [lightShareButtonFillColors, setLightShareButtonFillColors] = useState(["#4267B2", "#00ACED", "#25D366","#FF4500", "#7F7F7F"])
-  const [darkShareButtonFillColors, setDarkShareButtonFillColors] = useState(["#121212", "#121212", "#121212","#121212", "#121212"])
-  const [shareButtonFillColors, setShareButtonFillColors] = useState([])
+//  const [darkShareButtonFillColors, setDarkShareButtonFillColors] = useState(["#121212", "#121212", "#121212","#121212", "#121212"])
+//  const [shareButtonFillColors, setShareButtonFillColors] = useState([])
 
   
   // FB, TWITTER, WHATSAPP, REDDIT, EMAIL
@@ -49,7 +49,7 @@ function ArticleCardMinor( {title, description, content, image, url, source, pub
   
   
   useEffect(() => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       async function getUserSavedArticles() {
         if (userID) {
           const {data, error} = await supabase
@@ -67,11 +67,16 @@ function ArticleCardMinor( {title, description, content, image, url, source, pub
           }
       }
       getUserSavedArticles()
+//      console.log("got saved")
 
       setAlreadySaved(savedArticles.findIndex(article => 
         article.title === title))
 
     }, 500)
+//  console.log("timer off")
+    return () => clearTimeout(timer);
+  
+    
 
   }, [userID, savedArticles, title])
 
@@ -98,13 +103,14 @@ function ArticleCardMinor( {title, description, content, image, url, source, pub
   if (interval > 0 && interval < 1) {
     interval = Math.ceil(interval * 60)
     timeSincePublication=`${interval} minutes`
+  }  
 
 // HOUR
   if (interval >= 1 && interval < 2) {
     interval = Math.floor(interval)
     timeSincePublication=`${interval} hour`
   } 
-  } 
+  
 // HOURS
   if (interval >= 2 && interval < 24) {
     interval = Math.floor(interval)
@@ -208,8 +214,10 @@ function ArticleCardMinor( {title, description, content, image, url, source, pub
           </RedditShareButton>  
 
           <EmailShareButton
-            subject={url}
-            body={`${description}`}
+            subject={"Check this news article out..."}
+            body={`An article from NewsDesk:\n \n${title}`}
+            url={url}
+            separator={"\n\nLINK: "}
             >
             <EmailIcon size={30} round bgStyle={{ fill: lightShareButtonFillColors[4], stroke: 'white', strokeWidth: '0' }} />
           </EmailShareButton>

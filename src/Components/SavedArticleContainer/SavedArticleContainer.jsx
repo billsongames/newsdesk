@@ -34,13 +34,7 @@ function SavedArticleContainer( {userID} ) {
 
   }, [userID])
 
-/*   useEffect(() => {
-    if (savedArticles.length === 0) {
-      setAlert({message: "None today"})
-    } else {
-      setAlert({message: ""})
-    }
-  }, [savedArticles.length]) */
+
 
 
   return(
