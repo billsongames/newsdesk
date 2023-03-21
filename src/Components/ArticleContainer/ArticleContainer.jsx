@@ -27,7 +27,7 @@ function ArticleContainer( {userID, articleCategory, searchQuery} ) {
 //                                          #
 // CHANGE THIS TO FALSE FOR LIVE ARTICLES   #
 //                                          #
-  const testMode=true                     //#
+  const testMode=false                     //#
 //                                          #
 //###########################################   
 
