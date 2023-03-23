@@ -1,3 +1,28 @@
+![newsdesk_logo_small](https://user-images.githubusercontent.com/78327580/227347330-23b05731-2271-4c97-aac0-d40fb10bb806.png)
+
+## NewsDesk is an app that presents a summary of news articles from a variety of sources based on search criteria. After logging in to the app, the user can save articles to their profile for later access and can share articles to social media platforms.
+
+### By Paul Spencer https://github.com/billsongames and Carl Beckley https://github.com/CB715  
+### Written using React, JavaScript, HTML and CSS
+
+
+News stories can be selected by subject:
+
+* General
+* World
+* National
+* Business
+* Technology
+* Entertainemnt
+* Sports
+* Science
+* Health
+
+Retrieved articles can be sorted by date and filtered by source. You can search for articles as well using the search box. After logging in to the app, users can save articles to their profile for viewing again at a later time and share articles to social media platforms.
+
+![final_design](https://user-images.githubusercontent.com/78327580/227348117-c137636d-e1db-4d7f-9db8-1164c9dc61a7.png)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
