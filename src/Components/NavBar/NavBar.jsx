@@ -11,6 +11,8 @@ import "./navbar.css"
 
 const NavBar = ({ onNavBarCategoryChange, onSearchSubmit, userID, onLogin, onLogout }) => {
 
+  const appId = process.env.REACT_APP_FACEBOOK_APP_ID
+
   const {darkMode} = useContext(DarkModeContext)
 
   const [search, setSearch] = useState("");
@@ -82,12 +84,12 @@ const NavBar = ({ onNavBarCategoryChange, onSearchSubmit, userID, onLogin, onLog
 
           </>
           : <FacebookLogin
-              appId="582093880470486"
-              autoLoad={false}
-              fields="name,email,picture"
-              callback={onLogin}
-              cssClass="my-facebook-button-class"
-              cookie={true}
+              appId = {process.env.REACT_APP_FACEBOOK_APP_ID}
+              autoLoad = {false}
+              fields = "name,email,picture"
+              callback = {onLogin}
+              cssClass = "my-facebook-button-class"
+              cookie = {true}
           />    
         }
         </div>
