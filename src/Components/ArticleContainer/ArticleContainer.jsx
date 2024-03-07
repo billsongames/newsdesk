@@ -23,6 +23,8 @@ import { testData } from "../../data/data";
 
 function ArticleContainer( {userID, articleCategory, searchQuery} ) {
 
+  const REACT_APP_GNEWS_APIKEY = process.env.REACT_APP_GNEWS_APIKEY
+
 //###########################################
 //                                          #
 // CHANGE THIS TO FALSE FOR LIVE ARTICLES   #
@@ -79,7 +81,7 @@ function ArticleContainer( {userID, articleCategory, searchQuery} ) {
       if (!searchQuery) {
         console.log(`No search query, ${articleCategory} category displayed`)
         axios
-        .get(`https://gnews.io/api/v4/top-headlines?category=${articleCategory}&lang=en&country=gb&sortby=publishedAt&apikey=445b4b502608f3804329f4428b41b723`)
+        .get(`https://gnews.io/api/v4/top-headlines?category=${articleCategory}&lang=en&country=gb&sortby=publishedAt&apikey=${REACT_APP_GNEWS_APIKEY}`)
   
         .then(function (response) {
           setArticles(response.data.articles)
