@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import PropTypes from "prop-types"
 import { Link } from "react-router-dom";
-import FacebookLogin from 'react-facebook-login'
+import FacebookLogin from 'react17-facebook-login'
 
 import { DarkModeContext } from "../../context/DarkModeContext";
 
