@@ -31,7 +31,7 @@ function ArticleContainer( {userID, articleCategory, searchQuery} ) {
 //                                          #
   const testMode=false                     //#
 //                                          #
-//###########################################   
+//###########################################
 
 
   const [articles, setArticles] = useState([])
