@@ -20,6 +20,9 @@
     "react17-facebook-login": "^4.2.1",
     "web-vitals": "^2.1.4"
   },
+  "peerDependencies": {
+    "react": ">= 16.0.0 < 19"
+  },  
   "scripts": {
     "start": "HTTPS=true react-scripts start",
     "build": "react-scripts build",
