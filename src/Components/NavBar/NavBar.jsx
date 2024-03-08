@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import PropTypes from "prop-types"
 import { Link } from "react-router-dom";
-import FacebookLogin from 'react17-facebook-login'
+import FacebookLogin from '@greatsumini/react-facebook-login';
 
 import { DarkModeContext } from "../../context/DarkModeContext";
 
@@ -85,11 +85,24 @@ const NavBar = ({ onNavBarCategoryChange, onSearchSubmit, userID, onLogin, onLog
           </>
           : <FacebookLogin
               appId = {process.env.REACT_APP_FACEBOOK_APP_ID}
+              style={{
+                backgroundColor: "#4267B2",
+                color: "#EEEEEE",
+                width: "160px",
+                height: "32px",
+                fontWeight: "bold",
+                margin: "0px 10px 0px 0px",
+                border: "2px solid #4267B2",
+                borderRadius: "8px",
+                transitionDuration: "0.2s"
+              }}
               autoLoad = {false}
-              fields = "name,email,picture"
-              callback = {onLogin}
-              cssClass = "my-facebook-button-class"
-              cookie = {true}
+/*               fields = "name,email,picture" */
+              onSuccess={onLogin}
+              initParams={{
+                cookie: true
+              }}
+              
           />    
         }
         </div>
