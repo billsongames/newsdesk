@@ -58,7 +58,7 @@ function TickerBanner() {
     <div className="ticker-banner">
       <Alert message={alert.message} />
       <div className="breaking-news">
-        BREAKING NEWS: 
+        BREAKING: 
       </div>
     
       <div>
