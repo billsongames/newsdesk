@@ -83,7 +83,7 @@ function SavedArticleCard({title, description, content, image, url, source, publ
     <div className="saved-article-card">
       
       <div className="saved-article-card__title">
-        {title}
+        <a href={url} target="blank">{title}</a>
       </div>
 
       <div className="saved-article-card__display">
