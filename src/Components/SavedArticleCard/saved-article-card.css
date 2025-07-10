@@ -14,7 +14,7 @@
   opacity: var(--opacityHigh);
 }
 
-.saved-card-minor__title > a {
+.saved-article-card__title > a {
   color: #000000
 }
 
