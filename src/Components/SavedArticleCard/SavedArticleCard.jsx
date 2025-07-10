@@ -83,7 +83,7 @@ function SavedArticleCard({title, description, content, image, url, source, publ
     <div className="saved-article-card">
       
       <div className="saved-article-card__title">
-        <a href={url} target="blank">{title}</a>
+        <a href={url} target="_blank">{title}</a>
       </div>
 
       <div className="saved-article-card__display">
@@ -96,7 +96,7 @@ function SavedArticleCard({title, description, content, image, url, source, publ
             {description}
           </div>
           <div className="saved-article-card__content">
-            {content} <a href={url} target="blank" className="saved-article-card__url">Read full article</a> 
+            {content} <a href={url} target="_blank" className="saved-article-card__url">Read full article</a> 
           </div>          
         </div>
       </div>
