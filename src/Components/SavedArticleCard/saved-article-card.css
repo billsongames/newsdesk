@@ -14,17 +14,21 @@
   opacity: var(--opacityHigh);
 }
 
-.saved-article-card__title > a {
+.saved-article-card__title-url {
+  color: var(--text);
+}
+
+.saved-article-card__title>a {
   color: var(--text);
 }
 
 .saved-article-card__display {
   display: flex;
   flex-flow: row nowrap;
-  justify-content: flex-start;  
+  justify-content: flex-start;
 }
 
-.saved-article-card__image > img {
+.saved-article-card__image>img {
   width: 160px;
   height: 120px;
   object-fit: cover;
@@ -85,7 +89,7 @@
   font-weight: bold;
   border: 2px solid #774360;
   border-radius: 8px;
-    transition-duration: 0.2s;
+  transition-duration: 0.2s;
 }
 
 .saved-article-delete-button:hover {

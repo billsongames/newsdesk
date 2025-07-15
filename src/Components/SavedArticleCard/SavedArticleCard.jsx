@@ -4,16 +4,16 @@ import { supabase } from '../../api/api';
 
 import "./saved-article-card.css"
 
-function SavedArticleCard({title, description, content, image, url, source, publishedAt, userID, savedArticles }) {
+function SavedArticleCard({ title, description, content, image, url, source, publishedAt, userID, savedArticles }) {
 
   const [indexOfArticle, setIndexofArticle] = useState()
   const [newSavedArticles, setNewSavedArticles] = useState(savedArticles)
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    setIndexofArticle(savedArticles.findIndex(article => 
-      article.title === title)      )
-      }, [title, savedArticles, setIndexofArticle]);
+    setIndexofArticle(savedArticles.findIndex(article =>
+      article.title === title))
+  }, [title, savedArticles, setIndexofArticle]);
 
   const removeElement = () => {
     setNewSavedArticles((prev) => prev.splice(indexOfArticle, 1))
@@ -23,51 +23,51 @@ function SavedArticleCard({title, description, content, image, url, source, publ
     setVisible((prev) => !prev);
   };
 
-  const writeNewSavedArticles = async() => {
-    const {data, error} = await supabase
-    .from('users')
-    .update({
-      saved_articles: newSavedArticles
-    })
+  const writeNewSavedArticles = async () => {
+    const { data, error } = await supabase
+      .from('users')
+      .update({
+        saved_articles: newSavedArticles
+      })
       .eq('user_id', userID)
 
     if (error) {
       console.log("error", error)
-    }  
-    
-  console.log("deleted from table from card")
-  } 
+    }
+
+    console.log("deleted from table from card")
+  }
 
   let interval = (Date.now() - Date.parse(publishedAt)) / 1000 / 60 / 60;
-  let timeSincePublication=""
+  let timeSincePublication = ""
 
-//MINUTES
+  //MINUTES
   if (interval > 0 && interval < 1) {
     interval = Math.ceil(interval * 60)
-    timeSincePublication=`${interval} minutes`
+    timeSincePublication = `${interval} minutes`
 
-// HOUR
-  if (interval >= 1 && interval < 2) {
-    interval = Math.floor(interval)
-    timeSincePublication=`${interval} hour`
-  } 
-  } 
-// HOURS
+    // HOUR
+    if (interval >= 1 && interval < 2) {
+      interval = Math.floor(interval)
+      timeSincePublication = `${interval} hour`
+    }
+  }
+  // HOURS
   if (interval >= 2 && interval < 24) {
     interval = Math.floor(interval)
-    timeSincePublication=`${interval} hours`
-  } 
+    timeSincePublication = `${interval} hours`
+  }
 
-// DAY  
-  if (interval >= 24 && interval <48) {
-    interval=Math.floor(interval/24)
-    timeSincePublication=`${interval} day`
+  // DAY  
+  if (interval >= 24 && interval < 48) {
+    interval = Math.floor(interval / 24)
+    timeSincePublication = `${interval} day`
   }
 
   // DAYS  
   if (interval >= 48) {
-    interval=Math.floor(interval/24)
-    timeSincePublication=`${interval} days`
+    interval = Math.floor(interval / 24)
+    timeSincePublication = `${interval} days`
   }
 
 
@@ -76,46 +76,46 @@ function SavedArticleCard({title, description, content, image, url, source, publ
 
 
 
-  return(
+  return (
     <>
-    {visible
-    ? 
-    <div className="saved-article-card">
-      
-      <div className="saved-article-card__title">
-        <a href={url} target="_blank">{title}</a>
-      </div>
+      {visible
+        ?
+        <div className="saved-article-card">
 
-      <div className="saved-article-card__display">
-        <div className="saved-article-card__image">
-          <img className="image"src={image} alt={description}></img>        
-        </div>
-
-        <div className="saved-article-card__text">
-          <div className="saved-article-card__description">
-            {description}
+          <div className="saved-article-card__title">
+            <a href={url} classname="saved-article-card__title-url" target="_blank">{title}</a>
           </div>
-          <div className="saved-article-card__content">
-            {content} <a href={url} target="_blank" className="saved-article-card__url">Read full article</a> 
-          </div>          
+
+          <div className="saved-article-card__display">
+            <div className="saved-article-card__image">
+              <img className="image" src={image} alt={description}></img>
+            </div>
+
+            <div className="saved-article-card__text">
+              <div className="saved-article-card__description">
+                {description}
+              </div>
+              <div className="saved-article-card__content">
+                {content} <a href={url} target="_blank" className="saved-article-card__url">Read full article</a>
+              </div>
+            </div>
+          </div>
+
+          <div className="saved-article-card__source">
+            Source: {source}
+          </div>
+
+          <div className="saved-article-card__time">
+            {timeSincePublication} ago
+          </div>
+
+          <div className="saved-article-card__buttons">
+            <button className="saved-article-delete-button" onClick={removeElement}>Remove saved article</button>
+          </div>
         </div>
-      </div>
-
-      <div className="saved-article-card__source">
-        Source: {source}
-      </div>
-      
-      <div className="saved-article-card__time">
-        {timeSincePublication} ago
-      </div>
-
-      <div className="saved-article-card__buttons">
-        <button className="saved-article-delete-button" onClick={removeElement}>Remove saved article</button>
-      </div>
-    </div>
-    : <></>
-    }
-  </>
+        : <></>
+      }
+    </>
   )
 }
 

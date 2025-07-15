@@ -14,7 +14,7 @@
   opacity: var(--opacityHigh);
 }
 
-.article-card-minor__title > a {
+.article-card-minor__title-url {
   color: var(--text);
 }
 
