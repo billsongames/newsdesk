@@ -135,7 +135,7 @@ function ArticleCardMinor({ title, description, image, link, source, pubDate, us
     <div className="article-card-minor">
 
       <div className="article-card-minor__title">
-        {title}
+        <a href={url} className="article-card-minor__title-url" target="_blank">{title}</a>
       </div>
 
       <div className="article-card-minor__display">

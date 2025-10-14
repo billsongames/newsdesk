@@ -14,6 +14,10 @@
   opacity: var(--opacityHigh);
 }
 
+.article-card-minor__title-url {
+  color: var(--text);
+}
+
 .article-card-minor__display {
   display: flex;
   flex-flow: row nowrap;
@@ -24,6 +28,7 @@
   width: 160px;
   height: 120px;
   object-fit: cover;
+  color: var(--text);
 }
 
 .article-card-minor__text {
