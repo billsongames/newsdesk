@@ -21,27 +21,27 @@ import { testData } from "../../data/data";
 
 
 
-function ArticleContainer( {userID, articleCategory, searchQuery} ) {
+function ArticleContainer({ userID, articleCategory, searchQuery }) {
 
-  const REACT_APP_GNEWS_APIKEY = process.env.REACT_APP_GNEWS_APIKEY
+  const REACT_APP_NEWSDATAIO_APIKEY = process.env.REACT_APP_NEWSDATAIO_APIKEY
 
-//###########################################
-//                                          #
-// CHANGE THIS TO FALSE FOR LIVE ARTICLES   #
-//                                          #
-  const testMode=false                     //#
-//                                          #
-//###########################################
+  //###########################################
+  //                                          #
+  // CHANGE THIS TO FALSE FOR LIVE ARTICLES   #
+  //                                          #
+  const testMode = false                     //#
+  //                                          #
+  //###########################################
 
 
   const [articles, setArticles] = useState([])
-//  const [savedArticles, setSavedArticles] = useState([])
-  const [alert, setAlert] = useState({message: ""})
+  //  const [savedArticles, setSavedArticles] = useState([])
+  const [alert, setAlert] = useState({ message: "" })
   const [reverse, setReverse] = useState(false);
   const [selected, setSelected] = useState("")
 
 
-  
+
   const reverseOrder = () => {
     setReverse(!reverse);
   };
@@ -54,7 +54,7 @@ function ArticleContainer( {userID, articleCategory, searchQuery} ) {
   let sortedArticles = articles;
   if (reverse) {
     sortedArticles = articles.slice().reverse();
-  } 
+  }
 
   let filteredArticles = sortedArticles;
   if (selected) {
@@ -62,11 +62,11 @@ function ArticleContainer( {userID, articleCategory, searchQuery} ) {
       return article.source.name === selected;
     });
   }
-  
 
 
 
-// GET ARTICLES
+
+  // GET ARTICLES
 
   useEffect(() => {
     async function getArticles() {
@@ -74,69 +74,68 @@ function ArticleContainer( {userID, articleCategory, searchQuery} ) {
       if (testMode) {
         setArticles(testData.articles)
 
-    } else {
+      } else {
 
-  // TOP HEADLINES ENDPOINT      
+        // TOP HEADLINES ENDPOINT      
 
-      if (!searchQuery) {
-        console.log(`No search query, ${articleCategory} category displayed`)
-        axios
-        .get(`https://gnews.io/api/v4/top-headlines?category=${articleCategory}&lang=en&country=gb&sortby=publishedAt&apikey=${REACT_APP_GNEWS_APIKEY}`)
-  
-        .then(function (response) {
-          setArticles(response.data.articles)
-          setAlert({
-            message: ""
-          })
-          setSelected("");
-        })
-        .catch(function (error) {
-          setAlert({
-            message: "ERROR RETRIEVING ARTICLES. PLEASE TRY LATER..."
-          })
-          console.log(error);
-        })
-      }
-  
-  // SEARCH QUERY ENDPOINT
-      
-      else if (!articleCategory) {
-        console.log(`Search query = ${searchQuery}, no category displayed`)
-  
-        axios
-        .get(`https://gnews.io/api/v4/search?q=${searchQuery}&lang=en&country=us&max=10&apikey=445b4b502608f3804329f4428b41b723`)
-  
-        .then(function (response) {
-          setAlert({
-            message: ""
-          })
-          setArticles(response.data.articles)
-          
-  
-        })
-        .catch(function (error) {
-          setAlert({
-            message: "ERROR RETRIEVING ARTICLES. PLEASE TRY LATER..."
-          })  
-          console.log(error);
-        })
+        if (!searchQuery) {
+          console.log(`No search query, ${articleCategory} category displayed`)
+          axios
+            .get(`https://newsdata.io/api/1/latest?apikey=${REACT_APP_NEWSDATAIO_APIKEY}&country=gb&category=${articleCategory}`)
+
+            .then(function (response) {
+              setArticles(response.data.results)
+              setAlert({
+                message: ""
+              })
+              setSelected("");
+            })
+            .catch(function (error) {
+              setAlert({
+                message: "ERROR RETRIEVING ARTICLES. PLEASE TRY LATER..."
+              })
+              console.log(error);
+            })
+        }
+
+        // SEARCH QUERY ENDPOINT
+
+        else if (!articleCategory) {
+
+          axios
+            .get(`https://newsdata.io/api/1/latest?apikey=${REACT_APP_NEWSDATAIO_APIKEY}&q=${searchQuery}&country=gb`)
+
+            .then(function (response) {
+              setAlert({
+                message: ""
+              })
+              setArticles(response.data.results)
+
+
+            })
+            .catch(function (error) {
+              setAlert({
+                message: "ERROR RETRIEVING ARTICLES. PLEASE TRY LATER..."
+              })
+              console.log(error);
+            })
         }
       }
     }
     getArticles()
 
 
-}, [articleCategory, searchQuery, testMode])
+  }, [articleCategory, searchQuery, testMode])
 
 
 
 
 
-  return(
+  return (
     <div className="article-container">
       <div>
-        <Sidebar 
-          reverseOrder={reverseOrder} 
+        <Sidebar
+          reverseOrder={reverseOrder}
           articles={articles}
           selected={selected}
           setSelected={handleSelectChange}
@@ -146,22 +145,21 @@ function ArticleContainer( {userID, articleCategory, searchQuery} ) {
       <div>
         <Alert message={alert.message} />
         {filteredArticles.map((article) => (
-          <div key={article.title}>
+          <div key={article.article_id}>
             <ArticleCardMinor
-              title = {article.title}
+              title={article.title}
               description={article.description}
-              content={article.content}
-              image={article.image}
-              url={article.url}
-              source={article.source.name}
-              publishedAt={article.publishedAt}
+              image={article.image_url}
+              link={article.link}
+              source={article.source_name}
+              pubDate={article.pubDate}
               userID={userID}
-/*               savedArticles={savedArticles} */
+            /*               savedArticles={savedArticles} */
             />
-        </div>
-      ))}
-      </div>  
-  </div>
+          </div>
+        ))}
+      </div>
+    </div>
   )
 }
 

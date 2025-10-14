@@ -19,7 +19,7 @@ import {
 import "./article-card-minor.css"
 import { themeColors } from "../../themes/themes"
 
-function ArticleCardMinor({ title, description, content, image, url, source, publishedAt, userID }) {
+function ArticleCardMinor({ title, description, image, link, source, pubDate, userID }) {
 
   const darkMode = useContext(DarkModeContext)
 
@@ -35,11 +35,10 @@ function ArticleCardMinor({ title, description, content, image, url, source, pub
   const articleJSON = {
     "title": `${title}`,
     "description": `${description}`,
-    "content": `${content}`,
     "image_url": `${image}`,
-    "article_url": `${url}`,
+    "link": `${link}`,
     "source": `${source}`,
-    "publishedAt": `${publishedAt}`
+    "pubDate": `${pubDate}`
   }
 
   const [alert, setAlert] = useState({ message: "" })
@@ -97,7 +96,7 @@ function ArticleCardMinor({ title, description, content, image, url, source, pub
   }
 
 
-  let interval = (Date.now() - Date.parse(publishedAt)) / 1000 / 60 / 60;
+  let interval = (Date.now() - Date.parse(pubDate)) / 1000 / 60 / 60;
   let timeSincePublication = ""
 
   //MINUTES
@@ -147,9 +146,10 @@ function ArticleCardMinor({ title, description, content, image, url, source, pub
           <div className="article-card-minor__description">
             {description}
           </div>
-          <div className="article-card-minor__content">
-            {content} <a href={url} target="_blank" className="article-card-minor__url">Read full article</a>
+          <div>
+            <a href={link} target="blank" className="article-card-minor__url">Read full article</a>
           </div>
+
         </div>
       </div>
 
@@ -185,7 +185,7 @@ function ArticleCardMinor({ title, description, content, image, url, source, pub
             ?
             <>
               <FacebookShareButton
-                url={url}
+                url={link}
                 quote={title}
                 hashtag="#news"
               >
@@ -193,7 +193,7 @@ function ArticleCardMinor({ title, description, content, image, url, source, pub
               </FacebookShareButton>
 
               <TwitterShareButton
-                url={url}
+                url={link}
                 quote={title}
                 hashtag="#news"
               >
@@ -201,14 +201,14 @@ function ArticleCardMinor({ title, description, content, image, url, source, pub
               </TwitterShareButton>
 
               <WhatsappShareButton
-                url={url}
+                url={link}
                 quote={title}
               >
                 <WhatsappIcon size={30} round bgStyle={{ fill: lightShareButtonFillColors[2], stroke: 'white', strokeWidth: '0' }} />
               </WhatsappShareButton>
 
               <RedditShareButton
-                url={url}
+                url={link}
                 title={title}
               >
                 <RedditIcon size={30} round bgStyle={{ fill: lightShareButtonFillColors[3], stroke: 'white', strokeWidth: '0' }} />
@@ -217,7 +217,7 @@ function ArticleCardMinor({ title, description, content, image, url, source, pub
               <EmailShareButton
                 subject={"Check this news article out..."}
                 body={`An article from NewsDesk:\n \n${title}`}
-                url={url}
+                url={link}
                 separator={"\n\nLINK: "}
               >
                 <EmailIcon size={30} round bgStyle={{ fill: lightShareButtonFillColors[4], stroke: 'white', strokeWidth: '0' }} />
@@ -237,9 +237,8 @@ function ArticleCardMinor({ title, description, content, image, url, source, pub
 ArticleCardMinor.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  content: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired,
+  image: PropTypes.string,
+  link: PropTypes.string.isRequired,
   source: PropTypes.string.isRequired,
   publishedAt: PropTypes.string.isRequired,
   userID: PropTypes.string.isRequired
