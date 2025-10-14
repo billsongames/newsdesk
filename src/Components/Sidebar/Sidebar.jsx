@@ -24,7 +24,7 @@ const Sidebar = (props) => {
   };
 
   useEffect(() => {
-    setUniqueSources([...new Set(articles.map(article => article.source.name))])
+    setUniqueSources([...new Set(articles.map(article => article.source_name))])
 
   }, [articles])
 
@@ -38,7 +38,7 @@ return (
       <button data-testid="button2" className="sidebar-button" onClick={oldClickHandler} disabled={oldArticles}>Oldest</button>
     </div>
 
-    <div className="sidebar-filters-text" data-testid="filter">
+{/*     <div className="sidebar-filters-text" data-testid="filter">
       Filter by Source:
 
       <select value={selected}
@@ -49,7 +49,7 @@ return (
           <option value={source} key={source}>{source}</option>
           ))}
       </select>
-    </div>
+    </div> */}
   </div>
 );
 }

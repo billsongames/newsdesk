@@ -13,7 +13,7 @@ const NavBar = ({ onNavBarCategoryChange, onSearchSubmit, userID, onLogin, onLog
 
   const appId = process.env.REACT_APP_FACEBOOK_APP_ID
 
-  const {darkMode} = useContext(DarkModeContext)
+  const { darkMode } = useContext(DarkModeContext)
 
   const [search, setSearch] = useState("");
 
@@ -30,22 +30,19 @@ const NavBar = ({ onNavBarCategoryChange, onSearchSubmit, userID, onLogin, onLog
     <div className="navbar">
 
       <div className="navbar-container">
-      <Link to={"/"}>
-        {darkMode
-        ? <img className="navbar-logo" src="/logo2_dark.png" alt="logo" />
-        : <img className="navbar-logo" src="/logo2_light.png" alt="logo" />
-        }
-      </Link>  
+        <Link to={"/"}>
+          {darkMode
+            ? <img className="navbar-logo" src="/logo2_dark.png" alt="logo" />
+            : <img className="navbar-logo" src="/logo2_light.png" alt="logo" />
+          }
+        </Link>
 
         <div className="navbar-categories">
           <Link to={"/"}>
-            <button className="navbar-button" onClick={() => onNavBarCategoryChange("general")}>General</button>
+            <button className="navbar-button" onClick={() => onNavBarCategoryChange("domestic")}>UK</button>
           </Link>
           <Link to={"/"}>
             <button className="navbar-button" onClick={() => onNavBarCategoryChange("world")}>World</button>
-          </Link>
-          <Link to={"/"}>
-            <button className="navbar-button" onClick={() => onNavBarCategoryChange("national")}>National</button>
           </Link>
           <Link to={"/"}>
             <button className="navbar-button" onClick={() => onNavBarCategoryChange("business")}>Business</button>
@@ -65,26 +62,29 @@ const NavBar = ({ onNavBarCategoryChange, onSearchSubmit, userID, onLogin, onLog
           <Link to={"/"}>
             <button className="navbar-button" onClick={() => onNavBarCategoryChange("health")}>Health</button>
           </Link>
+          <Link to={"/"}>
+            <button className="navbar-button" onClick={() => onNavBarCategoryChange("lifestyle")}>Lifestyle</button>
+          </Link>
         </div>
       </div>
 
       <div className="navbar-log-in-search-container">
         <div className="navbar__facebook-login">
           {userID
-          ? <>
-          <div className="navbar-profile">
-            <Link to={'/'}>
-              <button onClick={onLogout} className="sign-out-button">Log out</button>
-            </Link>
-            <Link to={"./saved-articles"}>
-              <button className="saved-articles-button">Saved articles</button>
-            </Link>
-          </div>
+            ? <>
+              <div className="navbar-profile">
+                <Link to={'/'}>
+                  <button onClick={onLogout} className="sign-out-button">Log out</button>
+                </Link>
+                <Link to={"./saved-articles"}>
+                  <button className="saved-articles-button">Saved articles</button>
+                </Link>
+              </div>
 
 
-          </>
-          : <FacebookLogin
-              appId = {process.env.REACT_APP_FACEBOOK_APP_ID}
+            </>
+            : <FacebookLogin
+              appId={process.env.REACT_APP_FACEBOOK_APP_ID}
               style={{
                 backgroundColor: "#4267B2",
                 color: "#EEEEEE",
@@ -96,33 +96,33 @@ const NavBar = ({ onNavBarCategoryChange, onSearchSubmit, userID, onLogin, onLog
                 borderRadius: "8px",
                 transitionDuration: "0.2s"
               }}
-              autoLoad = {false}
-/*               fields = "name,email,picture" */
+              autoLoad={false}
+              /*               fields = "name,email,picture" */
               onSuccess={onLogin}
               initParams={{
                 cookie: true
               }}
-              
-          />    
-        }
+
+            />
+          }
         </div>
 
         <form className='search-form' onSubmit={handleSubmit}>
-          <input 
-            className='search-form__input' 
-            type='text' 
-            placeholder='Search articles' 
+          <input
+            className='search-form__input'
+            type='text'
+            placeholder='Search articles'
             value={search}
             onChange={handleSearchInput}
-            />
-          <Link to={"/"}>
+          />
+          {/*           <Link to={"/"}> */}
           <button className='search-form__button' type='submit' data-testid='button'>
             {darkMode
-            ? <img src="./search-icon-50px_dark.png"></img>
-            : <img src="./search-icon-50px_light.png"></img>
-            }            
+              ? <img src="./search-icon-50px_dark.png"></img>
+              : <img src="./search-icon-50px_light.png"></img>
+            }
           </button>
-          </Link>
+          {/*           </Link> */}
         </form>
 
       </div>

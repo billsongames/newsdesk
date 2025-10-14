@@ -4,7 +4,7 @@ import { supabase } from '../../api/api';
 
 import "./saved-article-card.css"
 
-function SavedArticleCard({title, description, content, image, url, source, publishedAt, userID, savedArticles }) {
+function SavedArticleCard({title, description, content, image, link, source, pubDate, userID, savedArticles }) {
 
   const [indexOfArticle, setIndexofArticle] = useState()
   const [newSavedArticles, setNewSavedArticles] = useState(savedArticles)
@@ -38,7 +38,7 @@ function SavedArticleCard({title, description, content, image, url, source, publ
   console.log("deleted from table from card")
   } 
 
-  let interval = (Date.now() - Date.parse(publishedAt)) / 1000 / 60 / 60;
+  let interval = (Date.now() - Date.parse(pubDate)) / 1000 / 60 / 60;
   let timeSincePublication=""
 
 //MINUTES
@@ -95,8 +95,8 @@ function SavedArticleCard({title, description, content, image, url, source, publ
           <div className="saved-article-card__description">
             {description}
           </div>
-          <div className="saved-article-card__content">
-            {content} <a href={url} target="blank" className="saved-article-card__url">Read full article</a> 
+          <div>
+            <a href={link} target="blank" className="saved-article-card__url">Read full article</a> 
           </div>          
         </div>
       </div>
@@ -122,11 +122,10 @@ function SavedArticleCard({title, description, content, image, url, source, publ
 SavedArticleCard.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  content: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
+  image: PropTypes.string,
   url: PropTypes.string.isRequired,
   source: PropTypes.string.isRequired,
-  publishedAt: PropTypes.string.isRequired,
+  pubDate: PropTypes.string.isRequired,
   userID: PropTypes.string.isRequired,
   savedArticles: PropTypes.array.isRequired
 }

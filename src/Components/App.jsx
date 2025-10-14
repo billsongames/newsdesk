@@ -15,7 +15,7 @@ import Account from "./Account/Account"
 function App() {
 
   const [userID, setUserID] = useState("")
-  const [articleCategory, setArticleCategory] = useState("general")
+  const [articleCategory, setArticleCategory] = useState("domestic")
   const [search, setSearch] = useState("")
 
   const handleLogin = (response) => {

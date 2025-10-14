@@ -46,6 +46,7 @@
 }
 
 .article-card-minor__url {
+  margin: 10px;
   padding: 2px;
   font-size: 14px;
   color: var(--text);

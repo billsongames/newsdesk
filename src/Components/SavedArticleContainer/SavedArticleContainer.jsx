@@ -51,12 +51,11 @@ function SavedArticleContainer( {userID} ) {
             <div key={article.title}>
               <SavedArticleCard
                 title = {article.title}
-                description={article.description}
-                content={article.content}
+                description={article.description}    
                 image={article.image_url}
-                url={article.article_url}
-                source={article.source}
-                publishedAt={article.publishedAt}
+                link={article.link}
+                source={article.source_name}
+                pubDate={article.pubDate}
                 savedArticles={savedArticles}
                 userID={userID}
               />
