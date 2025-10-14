@@ -83,7 +83,7 @@ function SavedArticleCard({title, description, image, link, source, pubDate, use
         <div className="saved-article-card">
 
           <div className="saved-article-card__title">
-            <a href={url} classname="saved-article-card__title-url" target="_blank">{title}</a>
+            <a href={link} classname="saved-article-card__title-url" target="_blank">{title}</a>
           </div>
 
           <div className="saved-article-card__display">
@@ -95,9 +95,9 @@ function SavedArticleCard({title, description, image, link, source, pubDate, use
               <div className="saved-article-card__description">
                 {description}
               </div>
-              <div className="saved-article-card__content">
-                {content} <a href={url} target="_blank" className="saved-article-card__url">Read full article</a>
-              </div>
+          <div>
+            <a href={link} target="blank" className="saved-article-card__url">Read full article</a>
+          </div>
             </div>
           </div>
 
@@ -111,10 +111,7 @@ function SavedArticleCard({title, description, image, link, source, pubDate, use
 
           <div className="saved-article-card__buttons">
             <button className="saved-article-delete-button" onClick={removeElement}>Remove saved article</button>
-          </div>
-          <div>
-            <a href={link} target="blank" className="saved-article-card__url">Read full article</a> 
-          </div>          
+          </div>       
         </div>
         : <></>
       }
