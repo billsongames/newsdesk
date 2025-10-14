@@ -4,7 +4,7 @@ import { supabase } from '../../api/api';
 
 import "./saved-article-card.css"
 
-function SavedArticleCard({title, description, content, image, link, source, pubDate, userID, savedArticles }) {
+function SavedArticleCard({title, description, image, link, source, pubDate, userID, savedArticles }) {
 
   const [indexOfArticle, setIndexofArticle] = useState()
   const [newSavedArticles, setNewSavedArticles] = useState(savedArticles)
