@@ -126,7 +126,7 @@ SavedArticleCard.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   image: PropTypes.string,
-  url: PropTypes.string.isRequired,
+  link: PropTypes.string.isRequired,
   source: PropTypes.string.isRequired,
   pubDate: PropTypes.string.isRequired,
   userID: PropTypes.string.isRequired,
