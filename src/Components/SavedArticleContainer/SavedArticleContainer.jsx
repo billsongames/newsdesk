@@ -54,7 +54,7 @@ function SavedArticleContainer( {userID} ) {
                 description={article.description}    
                 image={article.image_url}
                 link={article.link}
-                source={article.source_name}
+                source={article.source}
                 pubDate={article.pubDate}
                 savedArticles={savedArticles}
                 userID={userID}
