@@ -11,6 +11,8 @@ import TickerBanner from "../TickerBanner/TickerBanner";
 import ArticleCardMinor from "../ArticleCardMinor/ArticleCardMinor";
 import Alert from "../Alert/Alert"
 
+import noimage from "../../noimage.png"
+
 import "./article-container.css"
 //import {themeColors} from "../../themes/themes"
 
@@ -149,7 +151,7 @@ function ArticleContainer({ userID, articleCategory, searchQuery }) {
             <ArticleCardMinor
               title={article.title}
               description={article.description}
-              image={article.image_url}
+              image={article.image_url? article.image_url : noimage}
               link={article.link}
               source={article.source_name}
               pubDate={article.pubDate}
